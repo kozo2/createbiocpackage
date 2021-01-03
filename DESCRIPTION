@@ -1,12 +1,12 @@
-Package: BuildABiocWorkshop
+Package: CreateBiocPackage
 Title: Bioconductor Workshop Template and Github Actions
 Version: 0.9.0
 Authors@R: 
-    person(given = "Sean",
-           family = "Davis",
+    person(given = "Kozo",
+           family = "Nishida",
            role = c("aut", "cre"),
-           email = "seandavi@gmail.com",
-           comment = c(ORCID = "your-orc-id-here"))
+           email = "kozo.nishida@gmail.com",
+           comment = c(ORCID = "0000-0001-8501-7319"))
 Description: This package serves as a template for using github actions to 
     prepare a Bioconductor Workshop package for use. In particular,
     a pkgdown website and docker image are generated based on workflow 
