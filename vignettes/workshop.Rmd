@@ -1,0 +1,177 @@
+---
+title: "Bioconductorパッケージの作り方"
+author: Kozo Nishida^[kozo.nishida@gmail.com]
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{An Example Workshop}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Bioconductorパッケージの作り方
+
+Authors:
+    Author Kozo Nishida^[RIKEN],
+    <br/>
+Last modified: 06 Jan, 2021.
+
+免責事項: このテキストの多くは Saskia Freytag さん Peter Hickey さん によるワークショップ
+[Building a Bioconductor Package](https://saskiafreytag.github.io/making_bioconductor_pkg/articles/workshop.html)
+に基づいています。
+
+## 概要
+
+### 説明
+
+ここでは
+
+1. Bioconductorパッケージがどのようなものか
+2. なぜBioconductorパッケージを作るのか
+3. どのようにしてBioconductorパッケージを作るのか
+
+を伝えます。
+このドキュメントはTogoTVの...用のテキスト版になります。
+
+### 必要条件
+
+- R言語の基本的な知識
+- RとRStudio
+- GitHubのアカウント
+
+### 聴講者は何ができるようになるか
+
+バージョン管理された小さなRパッケージを作る方法を習得できます。
+
+Describe how students will be expected to participate in the workshop.
+
+### _R_ / _Bioconductor_ packages used
+
+```
+library(usethis)
+library(roxygen2)
+library(devtools)
+library(goodpractice)
+library(BiocCheck)
+```
+
+### Time outline
+
+An example for a 45-minute workshop:
+
+| Activity                     | Time |
+|------------------------------|------|
+| Packages                     | 15m  |
+| Package Development          | 15m  |
+| Contributing to Bioconductor | 5m   |
+| Best Practices               | 10m  |
+
+## 何を、何故、いつ、どのようにして
+
+### Bioconductorパッケージとは何か?
+
+Bioconductorパッケージとはハイスループットゲノムデータの分析と理解のための
+Rパッケージです。
+またそれらのパッケージリポジトリはCRANとは別のところにあります。
+Bioconductorパッケージは、「あなた以外の人達と情報を共有するため」の
+「コード」「データ」「ドキュメント」および「テスト」を合わせて提供します。
+
+Bioconductorパッケージには大まかに言って3つのタイプがあります。
+
+- Annotation: 何らかのIDを他の情報にリンクする情報を提供するデータベースのようなパッケージ
+- Software: アルゴリズムの実装、データベースへのアクセス、データの可視化などを提供するパッケージ
+- Experiment data: Softwareパッケージの用例を説明するために使用されるデータセットを提供するパッケージ
+
+このテキストでは、Softwareパッケージのみの説明を行います。
+
+### 何故Bioconductorパッケージを作るのか?
+
+Bioconductorパッケージは
+ハイスループットゲノムデータの分析と理解に関連するRコードとドキュメントを配布する簡単な方法を提供します。
+Bioconductorのリポジトリにあるパッケージは
+複数のシステム(Windows, macOS, Linux)で定期的にビルド、インストール、テストされるため、
+インストール可能であることが保証されています。
+また、高品質で、適切に保守され、利用方法が完全に文書化されていることが義務付けられています。
+このようなパッケージを作成し、Bioconductorを介して利用できるようにすることで、あなたは
+「オープンサイエンス」に貢献することができます。
+「オープンサイエンス」は、ソフトウェアを含む科学的プロセスのすべての面に
+アクセスできるようにすることを目的とした運動です。
+これにより、再現性のある研究が保証され、作業の無駄な繰り返しが減り、研究の効率が向上します。
+
+前述は少し高尚な理由ですが、Bioconductorのパッケージ作者になることはあなたのキャリアにも良いです。
+Bioconductorパッケージは他の科学者が使いやすい形になっているので、あなたの仕事の範囲を広げ、重要性
+(引用数)を高めるでしょう。
+
+### いつBioconductorパッケージを作るべきか?
+
+「ハイスループットゲノムデータの分析または理解における1つまたは複数の問題に対処する
+一連のまとまりのある関数がある」ならあなたはBioconductorパッケージを作る準備ができています。
+その関数は単に既存のソリューションの代替を提示するだけでなく、何らかの進歩を持っていることが重要です。
+ただし、アイデアがすでに実装されている場合でも、がっかりしないでください。
+そのような場合は、あなたのアイデアを実装しているパッケージの作者にアプローチし、
+コラボレーションを提案することを検討してください。
+
+### どのようにしてBioconductorパッケージを作るのか?
+
+通常のRパッケージにBioconductorで必要とされることを加味して作ります。
+この具体的な内容は、本テキストの残りの部分で述べます。
+
+## Bioconductor パッケージの設計原理
+
+### 再利用性
+
+現在Bioconductorには1903のSoftwareパッケージがあります。
+これらパッケージの多くはよく考えられたデータ構造を実装し、その周りにインフラを構築しています。
+特に、[Bioconductor Core Team](https://bioconductor.org/about/core-team/)は、
+Bioconductorプロジェクトの中心となる十分にテストされたパッケージの設計と開発に
+かなりのリソースを費やしてきました。
+あなたがBioconductorパッケージを作る場合、可能な限りこれらのデータ構造とインフラを
+活用することが重要です。
+たとえば、ハイスループットゲノムデータは通常、`SummarizedExperiment` オブジェクトクラスに保存されます。
+あなたのパッケージがそのようなデータを利用する場合は、
+`SummarizedExperiment` パッケージとの相互運用を検討する必要があります。
+必要に応じてあなたが組み込む必要のあるコアパッケージのリストは次のとおりです。
+
+- [GenomicRanges](https://bioconductor.org/packages/GenomicRanges) ゲノム座標を使用する場合
+- [SummarizedExperiment](https://bioconductor.org/packages/SummarizedExperiment) 矩形のフィーチャ x サンプルデータを使用する場合
+- [rtracklayer](https://bioconductor.org/packages/rtracklayer) GTF、GFF、BED、BigWigなどをインポートする場合
+- [GenomicAlignments](https://bioconductor.org/packages/GenomicAlignments) SAM/BAM ファイルをインポートする場合
+- [VariantAnnotation](https://bioconductor.org/packages/VariantAnnotation) VCF ファイルをインポートする場合
+- [Rsamtools](https://bioconductor.org/packages/Rsamtools) SAM/BAM ファイルをインポートする場合
+- [Biostrings](https://bioconductor.org/packages/Biostrings) DNA/RNA/AA 配列を使用する場合、またはFASTAファイルをインポートする場合
+- [ShortRead](https://bioconductor.org/packages/ShortRead) FASTQ ファイルをインポートする場合
+- [MSnbase](https://bioconductor.org/packages/MSnbase) 質量分析データを使用する場合
+- [GSEABase](https://bioconductor.org/packages/GSEABase) 遺伝子セットを扱う場合
+- [SingleCellExperiment](https://bioconductor.org/packages/SingleCellExperiment) シングルセルデータを扱う場合
+
+### モジュール性
+
+Bioconductorのパッケージはモジュール式であるべきです。
+つまり、あなたの関数をより小さなパーツに分割するよう心がける必要があります。
+これには複数の利点があります:
+
+- 関数が短いほど理解しやすい
+- 関数は複数の問題にわたって使用できる
+- ユーザーは中間結果を確認し、分析を調整できる
+
+特に、コードのコピー貼り付けは避けてください。
+代わり行うことは、関数を記述してその関数を適用するだけです。
+モジュール性と再利用性の概念は、相互運用性と呼ばれることもあることに注意してください。
+
+### 再現性のある研究
+
+あなたのパッケージのドキュメント、特にvignetteを通じて提供されるユースケースの例
+はBioconductorの要です。
+これにより、ユーザーはパッケージを正しく利用する方法を知ることができます。
+これは、再現性のある研究と使用を可能にすることの一部です。
+
+## Bioconductorパッケージの作成
+
+いよいよ実践的な部分に進みます。
