@@ -23,7 +23,8 @@ Authors:
     <br/>
 Last modified: 06 Jan, 2021.
 
-免責事項: このテキストの多くは Saskia Freytag さん Peter Hickey さん によるワークショップ
+免責事項: この教材の多くは Saskia Freytag さん Peter Hickey さん による
+ワークショップ
 [Building a Bioconductor Package](https://saskiafreytag.github.io/making_bioconductor_pkg/articles/workshop.html)
 に基づいています。
 
@@ -38,7 +39,7 @@ Last modified: 06 Jan, 2021.
 3. どのようにしてBioconductorパッケージを作るのか
 
 を伝えます。
-このドキュメントはTogoTVの...用のテキスト版になります。
+この教材はTogoTVの...用のテキスト版になります。
 
 ### 必要条件
 
@@ -78,42 +79,51 @@ An example for a 45-minute workshop:
 ### Bioconductorパッケージとは何か?
 
 Bioconductorパッケージとはハイスループットゲノムデータの分析と理解のための
-Rパッケージです。
+Rパッケージ集です。
 またそれらのパッケージリポジトリはCRANとは別のところにあります。
 Bioconductorパッケージは、「あなた以外の人達と情報を共有するため」の
 「コード」「データ」「ドキュメント」および「テスト」を合わせて提供します。
 
 Bioconductorパッケージには大まかに言って3つのタイプがあります。
 
-- Annotation: 何らかのIDを他の情報にリンクする情報を提供するデータベースのようなパッケージ
-- Software: アルゴリズムの実装、データベースへのアクセス、データの可視化などを提供するパッケージ
-- Experiment data: Softwareパッケージの用例を説明するために使用されるデータセットを提供するパッケージ
+- Annotation: 何らかのIDを他の情報にリンクする情報を提供するデータベース
+のようなパッケージ
+- Software: アルゴリズムの実装、データベースへのアクセス、データの可視化など
+を提供するパッケージ
+- Experiment data: Softwareパッケージの用例を説明するために使用される
+データセットを提供するパッケージ
 
-このテキストでは、Softwareパッケージのみの説明を行います。
+この教材では、Softwareパッケージのみの説明を行います。
 
 ### 何故Bioconductorパッケージを作るのか?
 
 Bioconductorパッケージは
-ハイスループットゲノムデータの分析と理解に関連するRコードとドキュメントを配布する簡単な方法を提供します。
+ハイスループットゲノムデータの分析と理解に関連するRコードとドキュメントを
+配布する簡単な方法を提供します。
 Bioconductorのリポジトリにあるパッケージは
-複数のシステム(Windows, macOS, Linux)で定期的にビルド、インストール、テストされるため、
-インストール可能であることが保証されています。
-また、高品質で、適切に保守され、利用方法が完全に文書化されていることが義務付けられています。
-このようなパッケージを作成し、Bioconductorを介して利用できるようにすることで、あなたは
-「オープンサイエンス」に貢献することができます。
+複数のシステム(Windows, macOS, Linux)で定期的にビルド、インストール、テスト
+されるため、インストール可能であることが保証されています。
+また、高品質で、適切に保守され、利用方法が完全に文書化されていることが
+義務付けられています。
+このようなパッケージを作成し、Bioconductorを介して利用できるようにすることで、
+あなたは「オープンサイエンス」に貢献することができます。
 「オープンサイエンス」は、ソフトウェアを含む科学的プロセスのすべての面に
 アクセスできるようにすることを目的とした運動です。
-これにより、再現性のある研究が保証され、作業の無駄な繰り返しが減り、研究の効率が向上します。
+これにより、再現性のある研究が保証され、作業の無駄な繰り返しが減り、
+研究の効率が向上します。
 
-前述は少し高尚な理由ですが、Bioconductorのパッケージ作者になることはあなたのキャリアにも良いです。
-Bioconductorパッケージは他の科学者が使いやすい形になっているので、あなたの仕事の範囲を広げ、重要性
-(引用数)を高めるでしょう。
+前述は少し高尚な理由ですが、Bioconductorのパッケージ作者になることは
+あなたのキャリアにも良いです。
+Bioconductorパッケージは他の科学者が使いやすい形になっているので、
+あなたの仕事の範囲を広げ、重要性(引用数)を高めるでしょう。
 
 ### いつBioconductorパッケージを作るべきか?
 
-「ハイスループットゲノムデータの分析または理解における1つまたは複数の問題に対処する
-一連のまとまりのある関数がある」ならあなたはBioconductorパッケージを作る準備ができています。
-その関数は単に既存のソリューションの代替を提示するだけでなく、何らかの進歩を持っていることが重要です。
+「ハイスループットゲノムデータの分析または理解における1つまたは複数の問題に
+対処する一連のまとまりのある関数がある」なら
+あなたはBioconductorパッケージを作る準備ができています。
+その関数は単に既存のソリューションの代替を提示するだけでなく、
+何らかの進歩を持っていることが重要です。
 ただし、アイデアがすでに実装されている場合でも、がっかりしないでください。
 そのような場合は、あなたのアイデアを実装しているパッケージの作者にアプローチし、
 コラボレーションを提案することを検討してください。
@@ -128,28 +138,41 @@ Bioconductorパッケージは他の科学者が使いやすい形になって�
 ### 再利用性
 
 現在Bioconductorには1903のSoftwareパッケージがあります。
-これらパッケージの多くはよく考えられたデータ構造を実装し、その周りにインフラを構築しています。
+これらパッケージの多くはよく考えられたデータ構造を実装し、
+その周りにインフラを構築しています。
 特に、[Bioconductor Core Team](https://bioconductor.org/about/core-team/)は、
 Bioconductorプロジェクトの中心となる十分にテストされたパッケージの設計と開発に
 かなりのリソースを費やしてきました。
-あなたがBioconductorパッケージを作る場合、可能な限りこれらのデータ構造とインフラを
-活用することが重要です。
-たとえば、ハイスループットゲノムデータは通常、`SummarizedExperiment` オブジェクトクラスに保存されます。
+あなたがBioconductorパッケージを作る場合、可能な限りこれらのデータ構造と
+インフラを活用することが重要です。
+たとえば、ハイスループットゲノムデータは通常、`SummarizedExperiment`
+オブジェクトクラスに保存されます。
 あなたのパッケージがそのようなデータを利用する場合は、
 `SummarizedExperiment` パッケージとの相互運用を検討する必要があります。
 必要に応じてあなたが組み込む必要のあるコアパッケージのリストは次のとおりです。
 
-- [GenomicRanges](https://bioconductor.org/packages/GenomicRanges) ゲノム座標を使用する場合
-- [SummarizedExperiment](https://bioconductor.org/packages/SummarizedExperiment) 矩形のフィーチャ x サンプルデータを使用する場合
-- [rtracklayer](https://bioconductor.org/packages/rtracklayer) GTF、GFF、BED、BigWigなどをインポートする場合
-- [GenomicAlignments](https://bioconductor.org/packages/GenomicAlignments) SAM/BAM ファイルをインポートする場合
-- [VariantAnnotation](https://bioconductor.org/packages/VariantAnnotation) VCF ファイルをインポートする場合
-- [Rsamtools](https://bioconductor.org/packages/Rsamtools) SAM/BAM ファイルをインポートする場合
-- [Biostrings](https://bioconductor.org/packages/Biostrings) DNA/RNA/AA 配列を使用する場合、またはFASTAファイルをインポートする場合
-- [ShortRead](https://bioconductor.org/packages/ShortRead) FASTQ ファイルをインポートする場合
-- [MSnbase](https://bioconductor.org/packages/MSnbase) 質量分析データを使用する場合
-- [GSEABase](https://bioconductor.org/packages/GSEABase) 遺伝子セットを扱う場合
-- [SingleCellExperiment](https://bioconductor.org/packages/SingleCellExperiment) シングルセルデータを扱う場合
+- [GenomicRanges](https://bioconductor.org/packages/GenomicRanges)
+ゲノム座標を使用する場合
+- [SummarizedExperiment](https://bioconductor.org/packages/SummarizedExperiment)
+矩形のフィーチャ x サンプルデータを使用する場合
+- [rtracklayer](https://bioconductor.org/packages/rtracklayer)
+GTF、GFF、BED、BigWigなどをインポートする場合
+- [GenomicAlignments](https://bioconductor.org/packages/GenomicAlignments)
+SAM/BAM ファイルをインポートする場合
+- [VariantAnnotation](https://bioconductor.org/packages/VariantAnnotation)
+VCF ファイルをインポートする場合
+- [Rsamtools](https://bioconductor.org/packages/Rsamtools)
+SAM/BAM ファイルをインポートする場合
+- [Biostrings](https://bioconductor.org/packages/Biostrings)
+DNA/RNA/AA 配列を使用する場合、またはFASTAファイルをインポートする場合
+- [ShortRead](https://bioconductor.org/packages/ShortRead)
+FASTQ ファイルをインポートする場合
+- [MSnbase](https://bioconductor.org/packages/MSnbase)
+質量分析データを使用する場合
+- [GSEABase](https://bioconductor.org/packages/GSEABase)
+遺伝子セットを扱う場合
+- [SingleCellExperiment](https://bioconductor.org/packages/SingleCellExperiment)
+シングルセルデータを扱う場合
 
 ### モジュール性
 
@@ -163,7 +186,8 @@ Bioconductorのパッケージはモジュール式であるべきです。
 
 特に、コードのコピー貼り付けは避けてください。
 代わり行うことは、関数を記述してその関数を適用するだけです。
-モジュール性と再利用性の概念は、相互運用性と呼ばれることもあることに注意してください。
+モジュール性と再利用性の概念は、
+相互運用性と呼ばれることもあることに注意してください。
 
 ### 再現性のある研究
 
@@ -175,3 +199,249 @@ Bioconductorのパッケージはモジュール式であるべきです。
 ## Bioconductorパッケージの作成
 
 いよいよ実践的な部分に進みます。
+ここからは、RStudioが必要です。
+RStudioには、エンドユーザーがパッケージの作成と配布を簡単にするためのツール
+がすでに追加されているため、(パッケージ作成を)始めるのに最適な場所です。
+
+この教材では次のパッケージが必要です:
+
+```{r}
+library(usethis)
+library(roxygen2)
+library(devtools)
+library(goodpractice)
+library(BiocCheck)
+library(biocthis)
+```
+
+### 常にバージョン管理から始める
+
+バージョン管理は、ソフトウェア開発にとって特に重要です。
+これは、すべての変更を追跡する必要があるためです。誤って何かを壊した場合は、
+時間を遡ってエラーを修正できます。
+基本的に、バージョン管理は、
+MicrosoftのWordの「変更履歴」機能のようなものと考えてください。
+
+#### バージョン管理の方法
+
+バージョン管理を行う方法は複数ありますが、デフォルトではGitになります。
+Gitは、バージョン管理を容易にするソフトウェアです。
+Gitは、特に複数のソフトウェア開発者間の作業を調整するために設計されています。
+Gitベースのプロジェクトは、GitHub、Bitbucket、GitLabなどのクラウドベースの
+サービスでホストされています。
+これらはGoogleドライブのようなものと考えることができますが、
+より系統立っています。
+これらを使用すると、プロジェクトを保存したり、他の人と作業を共有したり、
+他の人が変更を加えたりすることができます。
+
+#### GitHub と RStudio を用いたバージョン管理は簡単
+
+以降ではGitHubを使用します。
+GitHubを使用するには、次のものを得る・行う必要があります:
+
+- GitHub のアカウント
+- ローカルマシンへのgitのインストール
+- gitとRStudioの接続
+
+GitHubやgitについてわからない場合は、
+[生命科学研究のためのGitHubの使い方 基本編 | TogoTV](https://togotv.dbcls.jp/20180621.html)
+を参照してください。
+
+RStudioをgitに接続するには、`usethis`パッケージを使用します。
+`usethis`はパッケージとプロジェクトのセットアップを自動化してくれる
+Rパッケージです。
+
+```{r}
+use_git_config(user.name = "Jane Doe", user.email = "janedoe@email.org")
+```
+
+`Jane Doe`や`janedoe@email.org`はあなたのGitHubアカウント情報に
+置き換えてください。
+
+### さあ始めましょう
+
+これで、開始する準備がほぼ整いました。
+この教材では、小さなパッケージを作成します。
+これはBioconductorに提出できるパッケージではありませんが、
+ここではハイスループットゲノムアプリケーションを考えるのではなく、
+パッケージ開発部分に集中してください。
+
+#### いくつかのレイアウトパラメータを設定する
+
+コードが[Bioconductorが好む](http://bioconductor.org/developers/package-guidelines/#rcode)
+ようフォーマットされるように、RStudioにいくつかのレイアウト設定をしましょう。
+この手順は、Word文書のレイアウトパラメータを設定するようなものと考えてください。
+
+- タブを4スペースに設定します。これは、メニューバーの'Tools'中の
+'Global Options…' を選択し、'Code'パネルの'Editing'タブ内にあります。
+
+- 列幅のマーカーを80列に設定します。これは、メニューバーの'Tools'中の
+'Global Options…'を選択し、'Code'パネルの'Display'タブ内にあります。
+'Show margin'チェックボックスをクリックし、'Margin column'が80に
+設定されていることを確認してください。
+これは、行が長すぎるかどうかを確認するのに役立ちます。
+
+#### パッケージを初期化する
+
+あなたの最初のパッケージを作るために`biocthis`を使用します。
+`biocthis`はBioconductorパッケージ作成のセットアップを自動化してくれる
+Bioconductorパッケージです。
+この教材のために、「praiseme」という名のパッケージを作成します。
+このパッケージはtempフォルダと呼ばれる一時ファイルの置き場所に作られます。
+(そのファイルパスはOSによって異なります。)
+
+```{r}
+pkgdir <- biocthis_example_pkg("praiseme", use_git = FALSE)
+```
+
+このコードを実行すると新たに「praiseme」パッケージ用のRStudioのウインドウ
+が作られます。そのRStudioの画面を見ると、'Files'タブに
+いくつかのファイルが表示されています。
+これらは、パッケージを作成するために必要なファイルです
+(biocthisがこれらのファイルを作成しました)。
+ただしいくつかのファイル('.Rbuildignore'、'.Rhistory'、'praiseme.Rproj') は
+「パッケージ作成」には必要無く、パッケージ構築の管理を「支援する」ため
+の追加物です。
+これらの追加物はGitでバージョン管理する必要はありません。
+
+#### パッケージについて説明する
+
+これで、パッケージに情報を入力していく準備が整いました。
+DESCRIPTIONファイルからその入力を始めます。
+このファイルには、一連のフィールドがあります。
+またそのフィールドを詳細に記述していくことで、パッケージの内容がRに通知され、
+機能するようになります。
+'biocthis'が生成されたDESCRIPTIONは、次のようになっているはずです。
+
+```
+Package: praiseme
+Title: What the Package Does (One Line, Title Case)
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "First",
+           family = "Last",
+           role = c("aut", "cre"),
+           email = "first.last@example.com",
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: What the package does (one paragraph).
+License: `use_mit_license()`, `use_gpl3_license()` or friends to
+    pick a license
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+```
+
+すでに存在するフィールドに何が入れていくべきかを説明することから始めます。
+次に、そうでないフィールドのいくつかを追加することについて少し話します。
+
+- Package - この文字列は、正式なパッケージ名になります。
+- Title - これは、少し長い説明を含むパッケージの名前です。
+- Version - このフィールドの初期値はカンマで4桁区切りになっていますが
+Bioconductorパッケージが必要とする値はカンマで3桁区切りのもの
+(X.Y.Z)になります。
+Xはメジャーバージョンでリリースするまでは0にします。
+YにはBioconductorにパッケージを提出するまでは99を入れます。
+Zはパッケージに何らかの更新があった旨をBioconductorに伝える際にインクリメント
+するものになります。
+- Authors - パッケージに関わる人の情報を書きます。
+- Description - このパッケージが何であるかについての詳細な説明を書く場所です。
+論文の要約のように考えてください。
+- License - このパッケージのライセンスが何であるかを書きます。
+
+EncodingとLazyDataのフィールドはそのままでかまいません。
+
+下記はDESCRIPTIONファイルに含めることができる他のいくつかのフィールドです。
+この教材の残りの部分でこれらについて検討しますが、
+取り急ぎ簡単な概要を示します。
+
+- Depends - パッケージの依存関係を一覧表示するためのものです。
+依存するパッケージがある場合は、ここにそのリストを書きます。
+そうすることで、このパッケージは依存パッケージをロードしてからロードされます。
+- Imports - このパッケージから別のパッケージにアクセスする場合に
+それらのパッケージをここにリストします。
+このフィールドは通常、NAMESPACEファイル内のimportステートメントと組み合わせて
+使用​​され、このパッケージで使用可能にする必要のある別のパッケージの関数と
+オブジェクトを記述します。
+- Suggests - これは、パッケージをロードして使用するために必要のない依存関係用です。
+めったに使用されないけれども別のパッケージのリソースが必要、
+といった関数がある場合、Suggestsが適切なオプションです。
+Suggestsはその別のパッケージが必要な時に必要な場所にロードされるように、
+通常 `require()` とともに使用されます。
+- BiocViews - これはBioconductorに固有のフィールドです。統制語彙を使用して
+パッケージを説明するものです。
+[ここ](https://www.bioconductor.org/packages/devel/BiocViews.html)
+をクリックすると、それらの使用例を確認したり、既存のものを参照したりできます。
+参照する際は
+‘Developers: check this box to toggle the visibility of childless biocViews.’
+というチェックボックスを必ずオンにしてください。
+そうすれば、完全なオントロジーを見ることができます。
+`biocViews`パッケージの`recommendBiocViews(pkgdir)`関数を使用して、
+パッケージの潜在的なビューを提案することもできます。
+
+これで、DESCRIPTIONファイルについて説明したので、
+我々のパッケージで実際に機能するように、ファイルに下記を入力してみましょう。
+
+```
+Package: praiseme
+Type: Package
+Title: A Package to Desseminate Praise
+Version: 0.1.0
+Author: Jane Doe <janedoe@email.org>
+Maintainer: Jane Doe <janedoe@email.org>
+Description: This package praises the user with simple functions.
+License: MIT
+Encoding: UTF-8
+```
+
+#### バージョン管理に戻る
+
+パッケージに向けて最初の一歩を踏み出しました。
+通常、この時点で進捗状況をGitで保存します。
+これを行うには、`git commit` コマンドを使用します。
+あなたの名前のイニシャルや日付を追加してファイルを
+バージョン管理したことがありますか?
+その行為は事実上コミットと同等ですが、似たファイルのコピーを
+多数生み出してしまいます。
+一方Gitは、単一のファイルでその変更の履歴を調査したり、元に戻すことができます。
+
+RStudioで`git commit`を行うには、RStudioのGitペインで
+保存するすべてのファイルを選択します。次に、`Commit` をクリックします。
+これにより、変更に関する短いメッセージを書き込むように求められる
+新しいウィンドウが開きます。
+理想的には、これは変化の動機を伝えます。
+プロジェクトを再訪したり、同僚が最近行った変更を理解する必要がある場合、
+コミットメッセージを読んだり、コミット間の差分情報をざっと確認したりすることは、
+非常に効率的な方法です。
+
+#### もう少しバージョン管理について
+
+ここで、
+コミットしたばかりの変更をオンラインのGitHubリポジトリに伝えたいと思います。
+このために、GitHubのどこにパッケージを保存するかをRに伝える必要があります。
+このためには、最初に新しいGitHubリポジトリを作成する必要があります。
+https://github.com に行き、ログインできているか確認してください。
+
+緑色の“New repository”ボタンをクリックします。
+または、自分のプロファイルページを表示している場合は、
+“Repositories”をクリックしてから、緑色の“New”ボタンをクリックします。
+これにより、新しいページに移動し、リポジトリを作成できるようになります
+ここはあなたのパッケージのデータがリモートで保管される場所になります。
+リポジトリ名に‘praiseme’と入力し、
+大きな緑色のボタン“Create repository”をクリックして初期化します。
+
+最後に、 ‘Quick setup’ のURLをコピーします。
+
+次にRStudioで、右隅のGitペインをクリックします。
+そこで、「2つの紫色のボックスと白い正方形」をクリックします。
+“Add remote”をクリックします。
+ここにURLを貼り付け、‘Remote Name’を “origin”に設定します。
+次に、“Add”をクリックします。
+
+すると“New Branch”ダイアログに戻るはずです。
+ブランチ名として“master”を入力し、“Sync branch with remote”がチェック
+されていることを確認します。
+加えて“Create”をクリックします
+(ブランチがすでに存在している場合でも、yes で答えてください)。
+次のダイアログで、“overwrite”を選択します。
+
