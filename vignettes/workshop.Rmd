@@ -57,10 +57,7 @@ Describe how students will be expected to participate in the workshop.
 
 ```
 library(usethis)
-library(roxygen2)
-library(devtools)
-library(goodpractice)
-library(BiocCheck)
+library(biocthis)
 ```
 
 ### Time outline
@@ -207,10 +204,6 @@ RStudioには、エンドユーザーがパッケージの作成と配布を簡�
 
 ```{r}
 library(usethis)
-library(roxygen2)
-library(devtools)
-library(goodpractice)
-library(BiocCheck)
 library(biocthis)
 ```
 
