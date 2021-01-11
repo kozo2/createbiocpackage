@@ -2,9 +2,8 @@ pandoc: 2.7.3
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
-  HOWTO_BUILD_WORKSHOP: HOWTO_BUILD_WORKSHOP.html
-  workshop_example: workshop_example.html
-last_built: 2021-01-04T02:21Z
+  workshop: workshop.html
+last_built: 2021-01-11T01:15Z
 urls:
   reference: https://biopackathon.github.io/CreateBiocPackage/reference
   article: https://biopackathon.github.io/CreateBiocPackage/articles
