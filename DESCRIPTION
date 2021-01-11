@@ -19,7 +19,8 @@ RoxygenNote: 7.1.0
 Depends: 
     Biobase,
     usethis,
-    biocthis
+    biocthis,
+    roxygen2
 Suggests: 
     knitr,
     rmarkdown,
