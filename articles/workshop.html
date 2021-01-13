@@ -288,8 +288,8 @@
 <p>あなたの最初のパッケージを作るために<code>biocthis</code>を使用します。 <code>biocthis</code>はBioconductorパッケージ作成のセットアップを自動化してくれる Bioconductorパッケージです。 この教材のために、「praiseme」という名のパッケージを作成します。 このパッケージはtempフォルダと呼ばれる一時ファイルの置き場所に作られます。 (そのファイルパスはOSによって異なります。)</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pkgdir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/biocthis/man/biocthis_example_pkg.html">biocthis_example_pkg</a></span><span class="op">(</span><span class="st">"praiseme"</span>, use_git <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="co">#&gt; ✔ Creating '/tmp/RtmpI138nM/praiseme/'</span>
-<span class="co">#&gt; ✔ Setting active project to '/tmp/RtmpI138nM/praiseme'</span>
+<span class="co">#&gt; ✔ Creating '/tmp/RtmpOVNd7r/praiseme/'</span>
+<span class="co">#&gt; ✔ Setting active project to '/tmp/RtmpOVNd7r/praiseme'</span>
 <span class="co">#&gt; ✔ Creating 'R/'</span>
 <span class="co">#&gt; ✔ Writing 'DESCRIPTION'</span>
 <span class="co">#&gt; Package: praiseme</span>
@@ -306,7 +306,7 @@
 <span class="co">#&gt; RoxygenNote: 7.1.1</span>
 <span class="co">#&gt; ✔ Writing 'NAMESPACE'</span>
 <span class="co">#&gt; ✔ Setting active project to '&lt;no active project&gt;'</span>
-<span class="co">#&gt; ✔ Setting active project to '/tmp/RtmpI138nM/praiseme'</span></code></pre></div>
+<span class="co">#&gt; ✔ Setting active project to '/tmp/RtmpOVNd7r/praiseme'</span></code></pre></div>
 <p>このコードを実行すると新たに「praiseme」パッケージ用のRStudioのウインドウ が作られます。そのRStudioの画面を見ると、‘Files’タブに いくつかのファイルが表示されています。 これらは、パッケージを作成するために必要なファイルです (biocthisがこれらのファイルを作成しました)。 ただしいくつかのファイル(’.Rbuildignore’、‘.Rhistory’、‘praiseme.Rproj’) は 「パッケージ作成」には必要無く、パッケージ構築の管理を「支援する」ため の追加物です。 これらの追加物はGitでバージョン管理する必要はありません。</p>
 </div>
 <div id="パッケージについて説明する" class="section level4">
@@ -421,6 +421,72 @@ sum_plus_1(1, 4)</code></pre>
 <h3 class="hasAnchor">
 <a href="#%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%99%E3%82%8B" class="anchor"></a>ドキュメントを追加する</h3>
 <p>ドキュメントは、優れたパッケージの最も重要な側面の1つです。 これがないと、ユーザーはパッケージの使用方法を知ることができません。 ドキュメントは、将来のあなた (作者が関数が何をするはずだったかを忘れることはざらにあります)や、 パッケージを拡張する開発者の役に立ちます。 Rパッケージのドキュメントには <code><a href="https://rdrr.io/r/utils/Question.html">?</a></code> や <code>help()</code> を使ってアクセスできます。 ドキュメントの実体である .Rd ファイルは <code>\man</code>フォルダーにあります。 これらは手動で作成できますが、通常は手動で作るべきではありません。 ここでは、<code>roxygen2</code> パッケージを使用して .Rd ファイルを作成する方法を 学習しましょう。 <code>roxygen2</code> は、.Rdファイルの作成を自動化する言語であると同時に、 あなたのパッケージ中のNAMESPACEファイルとDESCRIPTIONファイルの Collateフィールドを管理することもできます。</p>
+<div id="ドキュメントを書く" class="section level4">
+<h4 class="hasAnchor">
+<a href="#%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88%E3%82%92%E6%9B%B8%E3%81%8F" class="anchor"></a>ドキュメントを書く</h4>
+<p>ドキュメントの作成を開始する非常に簡単な方法があります。 ドキュメント化する関数内にカーソルを置き、 メニューバーの‘Code’に移動して、‘Insert Roxygen Skeleton’をクリックします。 これにより、<code>praiseme</code> 関数にいくつかの行が自動的に追加されます。</p>
+<pre><code>#' Title
+#'
+#' @param your_name 
+#'
+#' @return
+#' @export
+#'
+#' @examples
+praiseme &lt;- function(your_name){
+
+    paste0(your_name, ", you are the best!")
+}</code></pre>
+<p>あなたは <code>#'</code> で始まる新しい行があることに気付くでしょう。 これらはroxygenのコメントです。</p>
+<ul>
+<li>最初の文がドキュメントのタイトルになります。 これは、<code>help(praiseme)</code>を見ると表示され、各ヘルプファイルの上部に表示されます。 1行に収まる必要があります。またピリオドで終わってはいけません。</li>
+<li>2番目の段落は説明です。 これはドキュメントの最初にあり、関数の機能を簡単に説明する必要があります。</li>
+<li>3番目以降の段落で詳細を説明します。 これは(多くの場合長い)セクションであり、引数の説明の後に表示され、 関数の動作について詳しく説明する必要があります。</li>
+</ul>
+<p>すべてのオブジェクトには、タイトルと説明が必要です。詳細はオプションです。 これらの導入ブロックに加えて、ほとんどの関数には、 <code>@param</code>、<code>@examples</code>、<code>@return</code>の3つのタグがあります。 これらはスケルトンによって自動的に生成されます。 それらは以下を参照します:</p>
+<ul>
+<li>
+<code>@param</code> は、関数の入力またはパラメーターを説明します。 説明には、パラメータのタイプ（文字列、数値ベクトルなど）の簡潔な要約と、 名前から明らかでない場合はパラメータの機能を記載する必要があります。 説明は大文字で始まり、ピリオドで終わる必要があります。 必要に応じて、複数行(または段落)にまたがることができます。 またすべてのパラメータを文書化する必要があります。</li>
+<li>
+<code>@examples</code> は、実際に関数を使用する方法を示す実行可能なRコードを提供します。 多くの人が最初に例を見るので、これはドキュメントの非常に重要な部分です。 サンプルコードはエラーなしで機能する必要があります。</li>
+<li>
+<code>@return</code> は、関数からの出力を記述します。 これは必ずしも必要ではありませんが、 関数が入力に応じて異なるタイプの出力を返す場合、 またはS3またはS4オブジェクトを返す場合はこれを書くのは良い考えです。</li>
+</ul>
+<p>それでは、 <code>praiseme</code> 関数のドキュメントを記入しましょう。</p>
+<pre><code>#' Praise the user
+#'
+#' \code{praiseme} returns praise incorporating a user-specified string.
+#'
+#' @param your_name A string specifying the name of the praisee.
+#'
+#' @return A string with the praise.
+#' @export
+#'
+#' @examples
+#' praiseme("Luke")
+praiseme &lt;- function(your_name){
+
+    paste0(your_name, ", you are the best!")
+}</code></pre>
+<p>最後に説明する必要があるのは、roxygenのコメントの<code>@export</code>ステートメントです。 このステートメントは、今作成した関数がユーザーに使用可能であることを確認します。 Roxygen2は、この関数がエクスポートされることを示すために、 NAMESPACEにexport行を自動的に作成します。 名前空間の重要性を理解するには、以下のセクションを参照してください。</p>
+<p>上記は、 ドキュメント化とNAMESPACEに関する絶対的な基本であることに注意してください。 詳細については、この<a href="http://r-pkgs.had.co.nz/man.html">リンク</a>と この<a href="http://r-pkgs.had.co.nz/namespace.html">リンク</a> を確認することを強くお勧めします。</p>
+</div>
+<div id="変更をコミットすることを忘れないでください" class="section level4">
+<h4 class="hasAnchor">
+<a href="#%E5%A4%89%E6%9B%B4%E3%82%92%E3%82%B3%E3%83%9F%E3%83%83%E3%83%88%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%82%92%E5%BF%98%E3%82%8C%E3%81%AA%E3%81%84%E3%81%A7%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84" class="anchor"></a>変更をコミットすることを忘れないでください</h4>
+<p>ドキュメントに満足したら、変更をコミットすることを忘れないでください。 行った変更に関する短いメッセージを追加します。</p>
+</div>
+</div>
+<div id="ドキュメントを処理する" class="section level3">
+<h3 class="hasAnchor">
+<a href="#%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88%E3%82%92%E5%87%A6%E7%90%86%E3%81%99%E3%82%8B" class="anchor"></a>ドキュメントを処理する</h3>
+<p>NAMESPACEとマニュアルページを実際に生成するには、 生成ステップを実行する必要があります。 ただし、これを可能にする前に、現在のNAMESPACEファイルを削除する必要があります。 RStudio右下隅の‘Files’ペインでNAMESPACEファイルにチェックマークを付けてから、 ‘Delete’をクリックします。 次に、NAMESPACEとマニュアルページの生成を実行します。 これを行うには、RStudio右上隅にある‘Build’ペインに移動します。 そこで‘More’を展開し、‘Configure Build Tools …’をクリックします。 これにより、‘Generate Documentation with Roxygen’の チェックボックスをオンにするための新しいウィンドウが開きます。</p>
+<p>ここで‘More’ボタンをもう一度展開すると、‘Document’オプションが表示されます。 このオプションをクリックしましょう。 これにより、<code>\man</code>フォルダーにファイルが生成されます。 それをざっと見てください。 あなたはこれがlatexで書かれていると見分けがつくかもしれません。</p>
+<div id="変更をコミットすることを忘れないでください-1" class="section level4">
+<h4 class="hasAnchor">
+<a href="#%E5%A4%89%E6%9B%B4%E3%82%92%E3%82%B3%E3%83%9F%E3%83%83%E3%83%88%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%82%92%E5%BF%98%E3%82%8C%E3%81%AA%E3%81%84%E3%81%A7%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84-1" class="anchor"></a>変更をコミットすることを忘れないでください</h4>
+<p>これらの変更を再度コミットします。</p>
+</div>
 </div>
 </div>
 </div>
