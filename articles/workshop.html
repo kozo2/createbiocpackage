@@ -80,8 +80,7 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Bioconductorパッケージの作り方</h1>
-                        <h4 class="author">Kozo Nishida<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>
-</h4>
+                        <h4 class="author">Kozo Nishida, Saskia Freytag &amp; Peter Hickey</h4>
             
       
       <small class="dont-index">Source: <a href="https://github.com/seandavi/BuildABiocWorkshop/blob/master/vignettes/workshop.Rmd"><code>vignettes/workshop.Rmd</code></a></small>
@@ -94,8 +93,7 @@
 <div id="bioconductorパッケージの作り方" class="section level1">
 <h1 class="hasAnchor">
 <a href="#bioconductor%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AE%E4%BD%9C%E3%82%8A%E6%96%B9" class="anchor"></a>Bioconductorパッケージの作り方</h1>
-<p>Authors: Author Kozo Nishida<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>, <br> Last modified: 06 Jan, 2021.</p>
-<p>免責事項: この教材の多くは Saskia Freytag さん Peter Hickey さん による ワークショップ <a href="https://saskiafreytag.github.io/making_bioconductor_pkg/articles/workshop.html">Building a Bioconductor Package</a> に基づいています。</p>
+<p>免責事項: この教材のほとんどは Saskia Freytag さん Peter Hickey さん による 英語ワークショップ <a href="https://saskiafreytag.github.io/making_bioconductor_pkg/articles/workshop.html">Building a Bioconductor Package</a> に基づいています。(それをKozo Nishidaが日本語訳したものになります。)</p>
 <div id="概要" class="section level2">
 <h2 class="hasAnchor">
 <a href="#%E6%A6%82%E8%A6%81" class="anchor"></a>概要</h2>
@@ -292,8 +290,8 @@
 <p>あなたの最初のパッケージを作るために<code>biocthis</code>を使用します。 <code>biocthis</code>はBioconductorパッケージ作成のセットアップを自動化してくれる Bioconductorパッケージです。 この教材のために、「praiseme」という名のパッケージを作成します。 このパッケージはtempフォルダと呼ばれる一時ファイルの置き場所に作られます。 (そのファイルパスはOSによって異なります。)</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pkgdir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/biocthis/man/biocthis_example_pkg.html">biocthis_example_pkg</a></span><span class="op">(</span><span class="st">"praiseme"</span>, use_git <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="co">#&gt; ✔ Creating '/tmp/RtmpksWKbj/praiseme/'</span>
-<span class="co">#&gt; ✔ Setting active project to '/tmp/RtmpksWKbj/praiseme'</span>
+<span class="co">#&gt; ✔ Creating '/tmp/RtmpXzxGk9/praiseme/'</span>
+<span class="co">#&gt; ✔ Setting active project to '/tmp/RtmpXzxGk9/praiseme'</span>
 <span class="co">#&gt; ✔ Creating 'R/'</span>
 <span class="co">#&gt; ✔ Writing 'DESCRIPTION'</span>
 <span class="co">#&gt; Package: praiseme</span>
@@ -310,7 +308,7 @@
 <span class="co">#&gt; RoxygenNote: 7.1.1</span>
 <span class="co">#&gt; ✔ Writing 'NAMESPACE'</span>
 <span class="co">#&gt; ✔ Setting active project to '&lt;no active project&gt;'</span>
-<span class="co">#&gt; ✔ Setting active project to '/tmp/RtmpksWKbj/praiseme'</span></code></pre></div>
+<span class="co">#&gt; ✔ Setting active project to '/tmp/RtmpXzxGk9/praiseme'</span></code></pre></div>
 <p>このコードを実行すると新たに「praiseme」パッケージ用のRStudioのウインドウ が作られます。そのRStudioの画面を見ると、‘Files’タブに いくつかのファイルが表示されています。 これらは、パッケージを作成するために必要なファイルです (biocthisがこれらのファイルを作成しました)。 ただしいくつかのファイル(’.Rbuildignore’、‘.Rhistory’、‘praiseme.Rproj’) は 「パッケージ作成」には必要無く、パッケージ構築の管理を「支援する」ため の追加物です。 これらの追加物はGitでバージョン管理する必要はありません。</p>
 </div>
 <div id="パッケージについて説明する" class="section level4">
@@ -498,13 +496,6 @@ praiseme &lt;- function(your_name){
 </div>
 </div>
 </div>
-</div>
-<div class="footnotes">
-<hr>
-<ol>
-<li id="fn1"><p><a href="mailto:kozo.nishida@gmail.com" class="email">kozo.nishida@gmail.com</a><a href="#fnref1" class="footnote-back">↩︎</a></p></li>
-<li id="fn2"><p>RIKEN<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
-</ol>
 </div>
   </div>
 
