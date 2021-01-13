@@ -6,6 +6,9 @@ vignette: >
   %\VignetteIndexEntry{An Example Workshop}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+resource_files:
+  - figures/*.png
+  - figures/*.jpg
 ---
 
 
@@ -51,16 +54,16 @@ Last modified: 06 Jan, 2021.
 
 バージョン管理された小さなRパッケージを作る方法を習得できます。
 
-### Time outline
+### 習得に要する時間の概要
 
-An example for a 45-minute workshop:
+An example for a ??-minute workshop:
 
 | Activity                     | Time |
 |------------------------------|------|
-| Packages                     | 15m  |
-| Package Development          | 15m  |
-| Contributing to Bioconductor | 5m   |
-| Best Practices               | 10m  |
+| ???                     | 15m  |
+| ???          | 15m  |
+| ??? | 5m   |
+| ???               | 10m  |
 
 ## 何を、何故、いつ、どのようにして
 
@@ -260,11 +263,15 @@ use_git_config(user.name = "Jane Doe", user.email = "janedoe@email.org")
 - タブを4スペースに設定します。これは、メニューバーの'Tools'中の
 'Global Options…' を選択し、'Code'パネルの'Editing'タブ内にあります。
 
+![](figures/tab_widths.png){width=350}
+
 - 列幅のマーカーを80列に設定します。これは、メニューバーの'Tools'中の
 'Global Options…'を選択し、'Code'パネルの'Display'タブ内にあります。
 'Show margin'チェックボックスをクリックし、'Margin column'が80に
 設定されていることを確認してください。
 これは、行が長すぎるかどうかを確認するのに役立ちます。
+
+![](figures/margin.png){width=350}
 
 #### パッケージを初期化する
 
@@ -390,6 +397,8 @@ Encoding: UTF-8
 多数生み出してしまいます。
 一方Gitは、単一のファイルでその変更の履歴を調査したり、元に戻すことができます。
 
+![](figures/commit.png){width=300}
+
 RStudioで`git commit`を行うには、RStudioのGitペインで
 保存するすべてのファイルを選択します。次に、`Commit` をクリックします。
 これにより、変更に関する短いメッセージを書き込むように求められる
@@ -415,13 +424,19 @@ https://github.com に行き、ログインできているか確認してくだ�
 リポジトリ名に‘praiseme’と入力し、
 大きな緑色のボタン“Create repository”をクリックして初期化します。
 
+![](figures/gh.png){width=500}
+
 最後に、 ‘Quick setup’ のURLをコピーします。
+
+![](figures/quick_setup.png){width=500}
 
 次にRStudioで、右隅のGitペインをクリックします。
 そこで、「2つの紫色のボックスと白い正方形」をクリックします。
 “Add remote”をクリックします。
 ここにURLを貼り付け、‘Remote Name’を “origin”に設定します。
 次に、“Add”をクリックします。
+
+![](figures/git_pane.png){width=300}
 
 すると“New Branch”ダイアログに戻るはずです。
 ブランチ名として“master”を入力し、“Sync branch with remote”がチェック
@@ -630,6 +645,8 @@ RStudio右下隅の‘Files’ペインでNAMESPACEファイルにチェック�
 そこで‘More’を展開し、‘Configure Build Tools …’をクリックします。
 これにより、‘Generate Documentation with Roxygen’の
 チェックボックスをオンにするための新しいウィンドウが開きます。
+
+![](figures/document.png){width=300}
 
 ここで‘More’ボタンをもう一度展開すると、‘Document’オプションが表示されます。
 このオプションをクリックしましょう。
