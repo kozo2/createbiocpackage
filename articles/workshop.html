@@ -124,10 +124,10 @@
 <a href="#%E8%81%B4%E8%AC%9B%E8%80%85%E3%81%AF%E4%BD%95%E3%81%8C%E3%81%A7%E3%81%8D%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E3%81%AA%E3%82%8B%E3%81%8B" class="anchor"></a>聴講者は何ができるようになるか</h3>
 <p>バージョン管理された小さなRパッケージを作る方法を習得できます。</p>
 </div>
-<div id="time-outline" class="section level3">
+<div id="習得に要する時間の概要" class="section level3">
 <h3 class="hasAnchor">
-<a href="#time-outline" class="anchor"></a>Time outline</h3>
-<p>An example for a 45-minute workshop:</p>
+<a href="#%E7%BF%92%E5%BE%97%E3%81%AB%E8%A6%81%E3%81%99%E3%82%8B%E6%99%82%E9%96%93%E3%81%AE%E6%A6%82%E8%A6%81" class="anchor"></a>習得に要する時間の概要</h3>
+<p>An example for a ??-minute workshop:</p>
 <table class="table">
 <thead><tr class="header">
 <th>Activity</th>
@@ -135,19 +135,19 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td>Packages</td>
+<td>???</td>
 <td>15m</td>
 </tr>
 <tr class="even">
-<td>Package Development</td>
+<td>???</td>
 <td>15m</td>
 </tr>
 <tr class="odd">
-<td>Contributing to Bioconductor</td>
+<td>???</td>
 <td>5m</td>
 </tr>
 <tr class="even">
-<td>Best Practices</td>
+<td>???</td>
 <td>10m</td>
 </tr>
 </tbody>
@@ -278,9 +278,13 @@
 <a href="#%E3%81%84%E3%81%8F%E3%81%A4%E3%81%8B%E3%81%AE%E3%83%AC%E3%82%A4%E3%82%A2%E3%82%A6%E3%83%88%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF%E3%82%92%E8%A8%AD%E5%AE%9A%E3%81%99%E3%82%8B" class="anchor"></a>いくつかのレイアウトパラメータを設定する</h4>
 <p>コードが<a href="http://bioconductor.org/developers/package-guidelines/#rcode">Bioconductorが好む</a> ようフォーマットされるように、RStudioにいくつかのレイアウト設定をしましょう。 この手順は、Word文書のレイアウトパラメータを設定するようなものと考えてください。</p>
 <ul>
-<li><p>タブを4スペースに設定します。これは、メニューバーの’Tools’中の ‘Global Options…’ を選択し、’Code’パネルの’Editing’タブ内にあります。</p></li>
-<li><p>列幅のマーカーを80列に設定します。これは、メニューバーの’Tools’中の ’Global Options…’を選択し、’Code’パネルの’Display’タブ内にあります。 ’Show margin’チェックボックスをクリックし、’Margin column’が80に 設定されていることを確認してください。 これは、行が長すぎるかどうかを確認するのに役立ちます。</p></li>
+<li>タブを4スペースに設定します。これは、メニューバーの’Tools’中の ‘Global Options…’ を選択し、’Code’パネルの’Editing’タブ内にあります。</li>
 </ul>
+<p><img src="figures/tab_widths.png" width="350"></p>
+<ul>
+<li>列幅のマーカーを80列に設定します。これは、メニューバーの’Tools’中の ’Global Options…’を選択し、’Code’パネルの’Display’タブ内にあります。 ’Show margin’チェックボックスをクリックし、’Margin column’が80に 設定されていることを確認してください。 これは、行が長すぎるかどうかを確認するのに役立ちます。</li>
+</ul>
+<p><img src="figures/margin.png" width="350"></p>
 </div>
 <div id="パッケージを初期化する" class="section level4">
 <h4 class="hasAnchor">
@@ -288,8 +292,8 @@
 <p>あなたの最初のパッケージを作るために<code>biocthis</code>を使用します。 <code>biocthis</code>はBioconductorパッケージ作成のセットアップを自動化してくれる Bioconductorパッケージです。 この教材のために、「praiseme」という名のパッケージを作成します。 このパッケージはtempフォルダと呼ばれる一時ファイルの置き場所に作られます。 (そのファイルパスはOSによって異なります。)</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pkgdir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/biocthis/man/biocthis_example_pkg.html">biocthis_example_pkg</a></span><span class="op">(</span><span class="st">"praiseme"</span>, use_git <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="co">#&gt; ✔ Creating '/tmp/Rtmpdgnz0U/praiseme/'</span>
-<span class="co">#&gt; ✔ Setting active project to '/tmp/Rtmpdgnz0U/praiseme'</span>
+<span class="co">#&gt; ✔ Creating '/tmp/RtmpksWKbj/praiseme/'</span>
+<span class="co">#&gt; ✔ Setting active project to '/tmp/RtmpksWKbj/praiseme'</span>
 <span class="co">#&gt; ✔ Creating 'R/'</span>
 <span class="co">#&gt; ✔ Writing 'DESCRIPTION'</span>
 <span class="co">#&gt; Package: praiseme</span>
@@ -306,7 +310,7 @@
 <span class="co">#&gt; RoxygenNote: 7.1.1</span>
 <span class="co">#&gt; ✔ Writing 'NAMESPACE'</span>
 <span class="co">#&gt; ✔ Setting active project to '&lt;no active project&gt;'</span>
-<span class="co">#&gt; ✔ Setting active project to '/tmp/Rtmpdgnz0U/praiseme'</span></code></pre></div>
+<span class="co">#&gt; ✔ Setting active project to '/tmp/RtmpksWKbj/praiseme'</span></code></pre></div>
 <p>このコードを実行すると新たに「praiseme」パッケージ用のRStudioのウインドウ が作られます。そのRStudioの画面を見ると、‘Files’タブに いくつかのファイルが表示されています。 これらは、パッケージを作成するために必要なファイルです (biocthisがこれらのファイルを作成しました)。 ただしいくつかのファイル(’.Rbuildignore’、‘.Rhistory’、‘praiseme.Rproj’) は 「パッケージ作成」には必要無く、パッケージ構築の管理を「支援する」ため の追加物です。 これらの追加物はGitでバージョン管理する必要はありません。</p>
 </div>
 <div id="パッケージについて説明する" class="section level4">
@@ -361,6 +365,7 @@ Encoding: UTF-8</code></pre>
 <h4 class="hasAnchor">
 <a href="#%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E7%AE%A1%E7%90%86%E3%81%AB%E6%88%BB%E3%82%8B" class="anchor"></a>バージョン管理に戻る</h4>
 <p>パッケージに向けて最初の一歩を踏み出しました。 通常、この時点で進捗状況をGitで保存します。 これを行うには、<code>git commit</code> コマンドを使用します。 あなたの名前のイニシャルや日付を追加してファイルを バージョン管理したことがありますか? その行為は事実上コミットと同等ですが、似たファイルのコピーを 多数生み出してしまいます。 一方Gitは、単一のファイルでその変更の履歴を調査したり、元に戻すことができます。</p>
+<p><img src="figures/commit.png" width="300"></p>
 <p>RStudioで<code>git commit</code>を行うには、RStudioのGitペインで 保存するすべてのファイルを選択します。次に、<code>Commit</code> をクリックします。 これにより、変更に関する短いメッセージを書き込むように求められる 新しいウィンドウが開きます。 理想的には、これは変化の動機を伝えます。 プロジェクトを再訪したり、同僚が最近行った変更を理解する必要がある場合、 コミットメッセージを読んだり、コミット間の差分情報をざっと確認したりすることは、 非常に効率的な方法です。</p>
 </div>
 <div id="もう少しバージョン管理について" class="section level4">
@@ -368,8 +373,11 @@ Encoding: UTF-8</code></pre>
 <a href="#%E3%82%82%E3%81%86%E5%B0%91%E3%81%97%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E7%AE%A1%E7%90%86%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6" class="anchor"></a>もう少しバージョン管理について</h4>
 <p>ここで、 コミットしたばかりの変更をオンラインのGitHubリポジトリに伝えたいと思います。 このために、GitHubのどこにパッケージを保存するかをRに伝える必要があります。 このためには、最初に新しいGitHubリポジトリを作成する必要があります。 <a href="https://github.com" class="uri">https://github.com</a> に行き、ログインできているか確認してください。</p>
 <p>緑色の“New repository”ボタンをクリックします。 または、自分のプロファイルページを表示している場合は、 “Repositories”をクリックしてから、緑色の“New”ボタンをクリックします。 これにより、新しいページに移動し、リポジトリを作成できるようになります ここはあなたのパッケージのデータがリモートで保管される場所になります。 リポジトリ名に‘praiseme’と入力し、 大きな緑色のボタン“Create repository”をクリックして初期化します。</p>
+<p><img src="figures/gh.png" width="500"></p>
 <p>最後に、 ‘Quick setup’ のURLをコピーします。</p>
+<p><img src="figures/quick_setup.png" width="500"></p>
 <p>次にRStudioで、右隅のGitペインをクリックします。 そこで、「2つの紫色のボックスと白い正方形」をクリックします。 “Add remote”をクリックします。 ここにURLを貼り付け、‘Remote Name’を “origin”に設定します。 次に、“Add”をクリックします。</p>
+<p><img src="figures/git_pane.png" width="300"></p>
 <p>すると“New Branch”ダイアログに戻るはずです。 ブランチ名として“master”を入力し、“Sync branch with remote”がチェック されていることを確認します。 加えて“Create”をクリックします (ブランチがすでに存在している場合でも、yes で答えてください)。 次のダイアログで、“overwrite”を選択します。</p>
 </div>
 </div>
@@ -481,6 +489,7 @@ praiseme &lt;- function(your_name){
 <h3 class="hasAnchor">
 <a href="#%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88%E3%82%92%E5%87%A6%E7%90%86%E3%81%99%E3%82%8B" class="anchor"></a>ドキュメントを処理する</h3>
 <p>NAMESPACEとマニュアルページを実際に生成するには、 生成ステップを実行する必要があります。 ただし、これを可能にする前に、現在のNAMESPACEファイルを削除する必要があります。 RStudio右下隅の‘Files’ペインでNAMESPACEファイルにチェックマークを付けてから、 ‘Delete’をクリックします。 次に、NAMESPACEとマニュアルページの生成を実行します。 これを行うには、RStudio右上隅にある‘Build’ペインに移動します。 そこで‘More’を展開し、‘Configure Build Tools …’をクリックします。 これにより、‘Generate Documentation with Roxygen’の チェックボックスをオンにするための新しいウィンドウが開きます。</p>
+<p><img src="figures/document.png" width="300"></p>
 <p>ここで‘More’ボタンをもう一度展開すると、‘Document’オプションが表示されます。 このオプションをクリックしましょう。 これにより、<code>\man</code>フォルダーにファイルが生成されます。 それをざっと見てください。 あなたはこれがlatexで書かれていると見分けがつくかもしれません。</p>
 <div id="変更をコミットすることを忘れないでください-1" class="section level4">
 <h4 class="hasAnchor">
