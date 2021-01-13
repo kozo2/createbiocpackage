@@ -1,6 +1,6 @@
 ---
 title: "Bioconductorパッケージの作り方"
-author: Kozo Nishida^[kozo.nishida@gmail.com]
+author: "Kozo Nishida, Saskia Freytag & Peter Hickey"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{An Example Workshop}
@@ -21,15 +21,10 @@ knitr::opts_chunk$set(
 
 # Bioconductorパッケージの作り方
 
-Authors:
-    Author Kozo Nishida^[RIKEN],
-    <br/>
-Last modified: 06 Jan, 2021.
-
-免責事項: この教材の多くは Saskia Freytag さん Peter Hickey さん による
-ワークショップ
+免責事項: この教材のほとんどは Saskia Freytag さん Peter Hickey さん による
+英語ワークショップ
 [Building a Bioconductor Package](https://saskiafreytag.github.io/making_bioconductor_pkg/articles/workshop.html)
-に基づいています。
+に基づいています。(それをKozo Nishidaが日本語訳したものになります。)
 
 ## 概要
 
