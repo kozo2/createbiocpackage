@@ -1,53 +1,43 @@
-# BuildABiocWorkshop
+# Bioconductorパッケージの作り方
 
-This package is a template for building a Bioconductor workshop. The package
-includes Github actions to:
+## 主要なリソース
 
-1. Set up bioconductor/bioconductor_docker:devel on Github resources
-2. Install package dependencies for your package (based on the `DESCRIPTION` file)
-3. Run `rcmdcheck::rcmdcheck`
-4. Build a pkgdown website and push it to github pages
-5. Build a docker image with the installed package and dependencies
+- 教材: https://biopackathon.github.io/createbiocpackage/
 
-## Responsibilities
+## 教材の説明
 
-This year, package authors will be primarily responsible for:
+この教材では、Bioconductorパッケージの作成方法の概要を説明します。
 
-1. Creating a landing site of their choosing for their workshops (a website). This website should be listed in the `DESCRIPTION` file as the `URL`.
-2. Creating a docker account and image that will contain workshop materials and the installed packages necessary to run those materials. The name of the resulting docker image, including "tag" if desired, should be listed in a non-standard tag, `DockerImage:` in the `DESCRIPTION` file. 
+学習者は、Bioconductorパッケージが特別な理由、パッケージの作成を開始する方法、
+およびそのパッケージの情報を広める方法を学びます。
+この教材では、入門資料の説明、「ライブ」コーディング、を行います。
+これらはすべて、以下のコンテンツを基にしています。
 
-Both of those tasks can be accomplished using the Github actions included in this template package. The vignette accompanying this package describes how to accomplish both of these tasks.
+## インストラクター
 
-## Details
+- [西田孝三 Kozo Nishida](https://twitter.com/kozo2) (kozo.nishida@gmail.com)
 
-For detailed instructions, see the `How to build a workshop` article/vignette.
+## 前提条件
 
-## Results of successful deployment
+- Rの構文の基本的な知識
+- Githubアカウント
 
-- A working docker image that contains the installed package and dependencies.
-- An up-to-date `pkgdown` website at https://YOURUSERNAME.github.io/YOURREPOSITORYNAME/
-- Docker image will be tagged with `latest`, `sha-XXXXXX` where `XXXXXX` is the hash of the current `master` commit, and `master`. 
+## 目標と目的
 
-## To use the resulting image:
+### 学習目標
 
-```sh
-docker run -e PASSWORD=<choose_a_password_for_rstudio> -p 8787:8787 YOURDOCKERIMAGENAME
+- パッケージ作成の目的を理解する
+- パッケージの基本的な構成要素について学ぶ
+- 初めてのシンプルなパッケージを開発する
+- バージョン管理に精通する
+
+## インストール
+
+この教材では、Bioconductorバージョン3.12を使用します。
+
+以下で、この教材に必要なパッケージをインストールできます。
+
+``` r
+library(BiocManager)
+install(c("usethis", "biocthis", "roxygen2", "devtools", "goodpractice", "BiocCheck"))
 ```
-Once running, navigate to https://localhost:8787/ and then login with `rstudio`:`yourchosenpassword`. 
-
-To try with **this** repository docker image:
-
-```sh
-docker run -e PASSWORD=abc -p 8787:8787 seandavi/buildabiocworkshop2020
-```
-
-*NOTE*: Running docker that uses the password in plain text like above exposes the password to others 
-in a multi-user system (like a shared workstation or compute node). In practice, consider using an environment 
-variable instead of plain text to pass along passwords and other secrets in docker command lines. 
-
-
-## Whatcha get
-
-https://seandavi.github.io/BuildABiocWorkshop
-
-![dockerhub](https://github.com/seandavi/BuildABiocWorkshop/raw/master/inst/images/dockerhub_result.png)
