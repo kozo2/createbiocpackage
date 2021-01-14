@@ -811,3 +811,104 @@ Github actionsを使用すると、
 `biocthis`の助けを借りるとGithub actionsを簡単に追加できます。
 詳細については、`biocthis`の関数`use_bioc_github_action()`を確認してください。
 
+### 情報を広めることによって締めくくる
+
+これで、最初のパッケージを配布する準備がほぼ整いました。
+
+#### Readmeを追加する
+
+パッケージを世界と共有する前に、
+パッケージに何が期待できるかを新しいユーザーに伝えるドキュメントを作成します。
+これが、GitHubのウェブページに表示される`README.md`ファイルの目的です。
+開始する最も簡単な方法は、
+[usethis::use_readme_rmd()](https://usethis.r-lib.org/reference/use_readme_rmd.html)
+を使用することです。
+これにより、テンプレートの`README.Rmd`が作成され、.Rbuildignoreにも追加されます。
+テンプレートは次のようになります。
+
+````
+---
+output: github_document
+---
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+````
+
+次に、パッケージの目的を説明し、
+例を追加した独自の小さなREADMEファイルを作成します。
+README.Rmdを変更することを忘れないでください。
+次に、README.Rmdを(knitrというRパッケージを使って)再びknitする必要があります。
+これを行うのは、RStudioのエディターの上部にある‘Knit’ボタンを
+クリックするとできます。
+
+R Markdownに慣れていない場合は、この必須の
+[チュートリアル](https://rmarkdown.rstudio.com/lesson-1.html)と、
+RStudio上部のツールバーにあるチートシートを確認してください。
+‘Help’、‘Cheatsheets’の順にクリックすると、
+“R Markdown Cheat Sheet”が表示されます。
+
+README.Rmdの例を次に示します。
+
+````markdown
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+`r ''```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+# praiseme
+
+The goal of praiseme is to deliver praise to nice people.
+
+## Installation
+
+You can install the released version of praiseme from 
+[github](https://github.com/SaskiaFreytag/praiseme) with:
+
+``` 
+devtools::install_github("SaskiaFreytag/praiseme")
+```
+
+## Example
+
+This is a basic example which shows you how to praise a nice person:
+
+```
+library(praiseme)
+praise("Saskia")
+```
+````
+
+#### 変更をコミットする
+
+いつものように変更をコミットします。
+
+#### 変更をプッシュする
+
+今度こそ、プロジェクト全体とGitHubに加えた変更の履歴をプッシュします。
+ここで、パッケージを他の人がダウンロードできるようになります。
+これを行うには、RStudio右上隅にある‘Git’ペインに移動します。
+そこで‘push’ボタンをクリックします。
+その後、GitHubにアクセスして、あなたのpraisemeリポジトリを見つけます。
+次のようなものが見えるはずです:
+
+![](figures/gh_final.png){width=300}
+
+他の人が `devtools::install_github("your_name/praiseme")` を使用して、
+パッケージを簡単にインストールできるようになったことに注意してください。
+これを試してみたい場合は、install_github関数を実行して
+GitHubからパッケージをインストールしてください。
