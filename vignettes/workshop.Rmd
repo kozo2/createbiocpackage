@@ -191,10 +191,13 @@ RStudioには、エンドユーザーがパッケージの作成と配布を簡�
 
 この教材では次のパッケージが必要です:
 
-```{r}
+```{r class.source = 'fold-show'}
 library(usethis)
 library(biocthis)
 library(roxygen2)
+library(devtools)
+library(goodpractice)
+library(BiocCheck)
 ```
 
 ### 常にバージョン管理から始める
@@ -234,7 +237,7 @@ RStudioをgitに接続するには、`usethis`パッケージを使用します�
 `usethis`はパッケージとプロジェクトのセットアップを自動化してくれる
 Rパッケージです。
 
-```{r}
+```{r, eval=FALSE, class.source = 'fold-show'}
 use_git_config(user.name = "Jane Doe", user.email = "janedoe@email.org")
 ```
 
@@ -454,7 +457,7 @@ https://github.com に行き、ログインできているか確認してくだ�
 これにより、エディタペインに新しいスクリプトが開きます。
 関数の構文は次のようになります。
 
-```
+```{r, eval=FALSE, class.source = 'fold-show'}
 function_name <- function(arg_1, arg_2, ...) {
     
     evaluation(arg_1, arg_2)
@@ -472,7 +475,7 @@ function_name <- function(arg_1, arg_2, ...) {
 これは戻り値とも呼ばれます。
 それでは、簡単な例を見てみましょう。
 
-```
+```{r, class.source = 'fold-show'}
 sum_plus_1 <- function(x, y){
     
     x + y + 1
@@ -480,10 +483,6 @@ sum_plus_1 <- function(x, y){
 }
 
 sum_plus_1(1, 4)
-```
-
-```
-## [1] 6
 ```
 
 2つの数値と1を加算する関数を作成しました。
@@ -509,7 +508,7 @@ Bioconductor固有のコードスタイルについて知りたい場合は、
 では、`praiseme` という関数を作成するときが来ました。
 この関数は、ユーザーに賞賛を返します。
 
-```
+```{r}
 praiseme <- function(your_name) {
     
     paste0(your_name, ", you are the absolute best!")
@@ -545,7 +544,7 @@ Collateフィールドを管理することもできます。
 メニューバーの‘Code’に移動して、‘Insert Roxygen Skeleton’をクリックします。
 これにより、`praiseme` 関数にいくつかの行が自動的に追加されます。
 
-```
+```{r, eval=FALSE, class.source = 'fold-show'}
 #' Title
 #'
 #' @param your_name 
@@ -594,7 +593,7 @@ praiseme <- function(your_name){
 
 それでは、 `praiseme` 関数のドキュメントを記入しましょう。
 
-```
+```{r, eval=FALSE}
 #' Praise the user
 #'
 #' \code{praiseme} returns praise incorporating a user-specified string.
@@ -652,3 +651,109 @@ RStudio右下隅の‘Files’ペインでNAMESPACEファイルにチェック�
 #### 変更をコミットすることを忘れないでください
 
 これらの変更を再度コミットします。
+
+#### NAMESPACEファイルについて
+
+NAMESPACEファイルは、
+パッケージによって(エンドユーザーに)エクスポートされるオブジェクトと、
+パッケージで使用できる(他のパッケージからインポートされた)オブジェクトを
+コントロールするために使用されます。
+DESCRIPTIONファイルとは異なり、
+NAMESPACEファイルは‘.dcf’ファイルではありません。
+実際には、Rコードを含めるようになっています。
+幸いなことに、`roxygen2`を使用してコードを文書化すると、
+NAMESPACEファイルが自動的に作成されます。
+これは高度なトピックであるため、
+`roxygen2`を使用して自動的に生成する方法を説明する以外のことは
+ここでは取り上げません。
+興味のある方は、この[リンク](http://r-pkgs.had.co.nz/namespace.html)
+をたどってください。
+
+### ビルド、インストール、パッケージのテスト
+
+我々はここで一旦パッケージングを終えました。
+実際には、これはおそらくパッケージの書き始めであり、あとは
+これまで述べた下記と同じ戦略を使用して関数を追加していくだけです。
+
+- 関数を書く
+- 関数にドキュメントをつける
+- ドキュメントとNAMESPACEファイルの作成
+
+最後に(または合間合間に)パッケージが機能するかどうかを確認する必要があります。
+この場合は、パッケージがビルドされ、インストールできるかどうかを意味します。
+
+#### パッケージをビルドしインストールする
+
+まず、パッケージがビルドされるかどうかを確認しましょう。
+これを行うには、RStudioの右上隅にある‘Build’ペインに移動し、
+‘More’をクリックします。
+ここに‘Build Source Package’があります。
+これにより、あなたのディレクトリで
+[devtools::build()](https://devtools.r-lib.org//reference/build.html)
+が実行され、プラットフォームに依存しない、トランスポートに適した方法で、
+すべてのパッケージコンテンツを含むtarファイルが作成されます。
+
+次に、パッケージを実際に操作できるかどうかを確認する必要があります。
+つまり、パッケージをインストールして機能を実行できるかどうかを確認します。
+これを行うには、‘Build’ペインの‘Install and Restart’ボタンをクリックします。
+これにより、Rsessionが再起動し、パッケージがインストールされます。
+これで、関数が機能したかどうかをテストして確認できます。
+
+#### パッケージをテストする
+
+それでは、あなたのパッケージで遊んでみてください。
+特に、ドキュメントが機能するかどうかを確認してください。
+これには、コマンド`?praiseme`を使用します。
+
+パッケージが最初のテストが通ったら、正式にテストできます。
+パッケージをテストする方法はいくつかあります。
+最も簡単な方法は、‘Build’ペインに再度移動し、‘Check’をクリックすることです。
+これにより、パッケージに対して `R CMD check` が実行され、
+すべての例が実行されるだけでなく、パッケージがビルドされ、
+再度インストールされます。
+
+[Bioconductorのパッケージガイドライン](https://www.bioconductor.org/developers/package-guidelines/)
+を見ると、パッケージがERRORやWARNINGなしで`R CMD build` と `R CMD check`
+に合格するだけでなく、
+あなたのコードが他のBioconductorプロジェクトのパッケージとうまく融合するように
+適切に文書化されていることも確認する必要があります。
+
+コードが正常であることを確認するための
+その他の要件にも合格する必要があることがわかります。
+文書化されており、プロジェクトの残りの部分にうまく統合されること。
+次のように、
+BiocCheckへの準拠についてあなたのパッケージをテストすることもできます:
+
+```{r eval=FALSE, class.source = 'fold-show'}
+library(BiocCheck)
+# This assume your working directory is the package directory.
+BiocCheck(".")
+```
+
+この時点までの手順に従っている場合、上記の関数を呼び出すと、
+パッケージがBioconductorパッケージガイドラインに準拠するために
+必要なものを示すリストオブジェクトが出力として生成されます。
+BiocCheckの出力は、次の3つの異なるカテゴリに分類されます。
+
+- Requirements は、常に必要であると私たちが確信しているものです。
+これらのいくつかに失敗した場合は、すぐに修正することを目指す必要があります。
+- Recommendations は、通常、変更することが非常に重要なものですが、
+その解釈はコンテキストに依存する場合があります。
+これらのいくつかに失敗している場合は、可能であれば修正を試みる必要があります。
+- Considerations は通常は良いアイデアです。
+ただし、特定の場合に適用される場合と適用されない場合があります。
+
+最後に、別の良いアイデアは、パッケージで次のコードを実行することです:
+
+```{r eval=FALSE, class.source = 'fold-show'}
+library(goodpractice)
+# This assume your working directory is the package directory.
+g <- gp(".")
+g
+```
+
+これは、あなたのパッケージに合わせた
+Rパッケージを構築する際のグッドプラクティスに関するアドバイスを提供する
+`goodpractice` パッケージを利用しています。
+アドバイスには、避けるべき関数と構文、パッケージ構造、コードの複雑さ、
+コードのフォーマットなどが含まれます。
