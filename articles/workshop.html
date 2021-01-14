@@ -293,8 +293,8 @@
 <p>あなたの最初のパッケージを作るために<code>biocthis</code>を使用します。 <code>biocthis</code>はBioconductorパッケージ作成のセットアップを自動化してくれる Bioconductorパッケージです。 この教材のために、「praiseme」という名のパッケージを作成します。 このパッケージはtempフォルダと呼ばれる一時ファイルの置き場所に作られます。 (そのファイルパスはOSによって異なります。)</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pkgdir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/biocthis/man/biocthis_example_pkg.html">biocthis_example_pkg</a></span><span class="op">(</span><span class="st">"praiseme"</span>, use_git <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="co">#&gt; ✔ Creating '/tmp/Rtmp2O3p0N/praiseme/'</span>
-<span class="co">#&gt; ✔ Setting active project to '/tmp/Rtmp2O3p0N/praiseme'</span>
+<span class="co">#&gt; ✔ Creating '/tmp/RtmpERP9OV/praiseme/'</span>
+<span class="co">#&gt; ✔ Setting active project to '/tmp/RtmpERP9OV/praiseme'</span>
 <span class="co">#&gt; ✔ Creating 'R/'</span>
 <span class="co">#&gt; ✔ Writing 'DESCRIPTION'</span>
 <span class="co">#&gt; Package: praiseme</span>
@@ -311,7 +311,7 @@
 <span class="co">#&gt; RoxygenNote: 7.1.1</span>
 <span class="co">#&gt; ✔ Writing 'NAMESPACE'</span>
 <span class="co">#&gt; ✔ Setting active project to '&lt;no active project&gt;'</span>
-<span class="co">#&gt; ✔ Setting active project to '/tmp/Rtmp2O3p0N/praiseme'</span></code></pre></div>
+<span class="co">#&gt; ✔ Setting active project to '/tmp/RtmpERP9OV/praiseme'</span></code></pre></div>
 <p>このコードを実行すると新たに「praiseme」パッケージ用のRStudioのウインドウ が作られます。そのRStudioの画面を見ると、‘Files’タブに いくつかのファイルが表示されています。 これらは、パッケージを作成するために必要なファイルです (biocthisがこれらのファイルを作成しました)。 ただしいくつかのファイル(’.Rbuildignore’、‘.Rhistory’、‘praiseme.Rproj’) は 「パッケージ作成」には必要無く、パッケージ構築の管理を「支援する」ため の追加物です。 これらの追加物はGitでバージョン管理する必要はありません。</p>
 </div>
 <div id="パッケージについて説明する" class="section level4">
@@ -690,6 +690,31 @@ knitr::opts_chunk$set(
 <a href="#s4%E3%82%AF%E3%83%A9%E3%82%B9%E3%82%92%E6%81%90%E3%82%8C%E3%81%AA%E3%81%84%E3%81%A7%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84" class="anchor"></a>S4クラスを恐れないでください</h4>
 <p>「Bioconductorは、よく知られている、 より広く使用されているS3クラスよりも複雑なS4クラスのシステムを好む」 、と聞いたことがあるかもしれません。 実際には、S4クラスに対するこの設定は、 新しい表現の実装に取り掛かっている場合にのみ影響します。 S4クラスを使用する場合は、いくつかの優れたガイドがあります。 この <a href="http://adv-r.had.co.nz/S4.html">リンク</a> とこの <a href="https://kasperdanielhansen.github.io/genbioconductor/html/R_S4.html">リンク</a> をチェックしてください。</p>
 </div>
+</div>
+</div>
+<div id="行き詰まってしまったら" class="section level2">
+<h2 class="hasAnchor">
+<a href="#%E8%A1%8C%E3%81%8D%E8%A9%B0%E3%81%BE%E3%81%A3%E3%81%A6%E3%81%97%E3%81%BE%E3%81%A3%E3%81%9F%E3%82%89" class="anchor"></a>行き詰まってしまったら</h2>
+<div id="その他のリソース" class="section level3">
+<h3 class="hasAnchor">
+<a href="#%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9" class="anchor"></a>その他のリソース</h3>
+<p>Rパッケージを書くことのトピックに関する多くの優れたチュートリアル、本、 ブログがあります。 下記は私たちのお気に入りです:</p>
+<ul>
+<li><a href="http://r-pkgs.had.co.nz/">R packages, Hadley Wickham</a></li>
+<li><a href="https://masalmon.eu/2017/12/11/goodrpackages/">How to develop a good R packages (for open science), Maelle Salmon</a></li>
+<li><a href="https://devguide.ropensci.org/">rOpenSci Packages: Development, Maintenance and Peer Review, rOpenSci software review editorial team</a></li>
+<li><a href="https://kbroman.org/pkg_primer/">R package primer, Karl Broman</a></li>
+</ul>
+<p>特にBioconductorパッケージを作成するには、次のリンクをお勧めします:</p>
+<ul>
+<li><a href="https://combine-australia.github.io/r-pkg-dev/">R package workshop</a></li>
+<li><a href="https://bioconductor.org/developers/how-to/buildingPackagesForBioc/">Building packages for Bioconductor</a></li>
+<li><a href="https://bioconductor.org/developers/package-guidelines/">Package Guidelines</a></li>
+<li><a href="http://bioconductor.org/developers/package-submission/">Package Submission</a></li>
+<li><a href="https://bioconductor.org/help/course-materials/2017/BioC2017/DDay/Workshop/MakeAPackage.html">Make a Package</a></li>
+<li><a href="https://support.rstudio.com/hc/en-us/articles/360016400354-Using-BioConductor-with-RStudio-Package-Manager">Using Bioconductor with RStudio Package Manager</a></li>
+</ul>
+<p>また、 このチュートリアルが失敗したときにパッケージの開発をガイドする素晴らしい <a href="https://github.com/lcolladotor/biocthis/">biocthis</a> パッケージもチェックしてください。</p>
 </div>
 </div>
 </div>
