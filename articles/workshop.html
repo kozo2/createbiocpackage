@@ -241,7 +241,10 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://usethis.r-lib.org">usethis</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lcolladotor/biocthis">biocthis</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://roxygen2.r-lib.org/">roxygen2</a></span><span class="op">)</span></code></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://roxygen2.r-lib.org/">roxygen2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/">devtools</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mangothecat/goodpractice">goodpractice</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Bioconductor/BiocCheck/issues">BiocCheck</a></span><span class="op">)</span></code></pre></div>
 <div id="常にバージョン管理から始める" class="section level3">
 <h3 class="hasAnchor">
 <a href="#%E5%B8%B8%E3%81%AB%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E7%AE%A1%E7%90%86%E3%81%8B%E3%82%89%E5%A7%8B%E3%82%81%E3%82%8B" class="anchor"></a>常にバージョン管理から始める</h3>
@@ -290,8 +293,8 @@
 <p>あなたの最初のパッケージを作るために<code>biocthis</code>を使用します。 <code>biocthis</code>はBioconductorパッケージ作成のセットアップを自動化してくれる Bioconductorパッケージです。 この教材のために、「praiseme」という名のパッケージを作成します。 このパッケージはtempフォルダと呼ばれる一時ファイルの置き場所に作られます。 (そのファイルパスはOSによって異なります。)</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pkgdir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/biocthis/man/biocthis_example_pkg.html">biocthis_example_pkg</a></span><span class="op">(</span><span class="st">"praiseme"</span>, use_git <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="co">#&gt; ✔ Creating '/tmp/RtmpXzxGk9/praiseme/'</span>
-<span class="co">#&gt; ✔ Setting active project to '/tmp/RtmpXzxGk9/praiseme'</span>
+<span class="co">#&gt; ✔ Creating '/tmp/RtmpxtiF0t/praiseme/'</span>
+<span class="co">#&gt; ✔ Setting active project to '/tmp/RtmpxtiF0t/praiseme'</span>
 <span class="co">#&gt; ✔ Creating 'R/'</span>
 <span class="co">#&gt; ✔ Writing 'DESCRIPTION'</span>
 <span class="co">#&gt; Package: praiseme</span>
@@ -308,7 +311,7 @@
 <span class="co">#&gt; RoxygenNote: 7.1.1</span>
 <span class="co">#&gt; ✔ Writing 'NAMESPACE'</span>
 <span class="co">#&gt; ✔ Setting active project to '&lt;no active project&gt;'</span>
-<span class="co">#&gt; ✔ Setting active project to '/tmp/RtmpXzxGk9/praiseme'</span></code></pre></div>
+<span class="co">#&gt; ✔ Setting active project to '/tmp/RtmpxtiF0t/praiseme'</span></code></pre></div>
 <p>このコードを実行すると新たに「praiseme」パッケージ用のRStudioのウインドウ が作られます。そのRStudioの画面を見ると、‘Files’タブに いくつかのファイルが表示されています。 これらは、パッケージを作成するために必要なファイルです (biocthisがこれらのファイルを作成しました)。 ただしいくつかのファイル(’.Rbuildignore’、‘.Rhistory’、‘praiseme.Rproj’) は 「パッケージ作成」には必要無く、パッケージ構築の管理を「支援する」ため の追加物です。 これらの追加物はGitでバージョン管理する必要はありません。</p>
 </div>
 <div id="パッケージについて説明する" class="section level4">
@@ -387,20 +390,22 @@ Encoding: UTF-8</code></pre>
 <h4 class="hasAnchor">
 <a href="#%E9%96%A2%E6%95%B0%E3%82%92%E6%9B%B8%E3%81%8F" class="anchor"></a>関数を書く</h4>
 <p>それでは、<code>praiseme</code> という名前で最初の関数を書いてみましょう。 これを行うには、メニューバーの‘File’に移動し、 ‘New File’を選択して、‘R Script’オプションをクリックします。 これにより、エディタペインに新しいスクリプトが開きます。 関数の構文は次のようになります。</p>
-<pre><code>function_name &lt;- function(arg_1, arg_2, ...) {
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">function_name</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">arg_1</span>, <span class="va">arg_2</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span>
     
-    evaluation(arg_1, arg_2)
+    <span class="fu">evaluation</span><span class="op">(</span><span class="va">arg_1</span>, <span class="va">arg_2</span><span class="op">)</span>
     
-}</code></pre>
+<span class="op">}</span></code></pre></div>
 <p>この場合、 <code>function_name</code> は関数の名前です。 関数を利用する際にはこの名前を用いて呼び出しを行います。 関数はいくつかの引数 <code>arg_1</code> と <code>arg_2</code> を取ります。 これらはプレースホルダーであり、関数が呼び出されると値が渡されます。 これらはオプションであることに注意してください。 関数本体には、関数の機能を定義するステートメントのコレクションが含まれています。 次に、関数は関数の最後の式を返します。 これは戻り値とも呼ばれます。 それでは、簡単な例を見てみましょう。</p>
-<pre><code>sum_plus_1 &lt;- function(x, y){
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">sum_plus_1</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">{</span>
     
-    x + y + 1
+    <span class="va">x</span> <span class="op">+</span> <span class="va">y</span> <span class="op">+</span> <span class="fl">1</span>
     
-}
+<span class="op">}</span>
 
-sum_plus_1(1, 4)</code></pre>
-<pre><code>## [1] 6</code></pre>
+<span class="fu">sum_plus_1</span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">)</span>
+<span class="co">#&gt; [1] 6</span></code></pre></div>
 <p>2つの数値と1を加算する関数を作成しました。 この関数を1と4に適用すると、予想どおり6が返されます。 良い関数を書くには練習が必要ですが、いくつかの基本的なルールがあります:</p>
 <ul>
 <li>コードが理解しやすくなるような示唆に富む名前を付ける</li>
@@ -411,11 +416,12 @@ sum_plus_1(1, 4)</code></pre>
 </ul>
 <p>Bioconductor固有のコードスタイルについて知りたい場合は、 この<a href="https://bioconductor.org/developers/how-to/coding-style/">リンク</a> をチェックしてください。 コードを自動的に再スタイル化する優れたRパッケージ <a href="https://cran.r-project.org/web/packages/styler/index.html">styler</a> もあります。 コードスタイルに問題が無いかどうか確認したいだけの場合は、Rパッケージ <a href="https://cran.r-project.org/web/packages/lintr/index.html">lintr</a> の方が便利です。</p>
 <p>では、<code>praiseme</code> という関数を作成するときが来ました。 この関数は、ユーザーに賞賛を返します。</p>
-<pre><code>praiseme &lt;- function(your_name) {
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">praiseme</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">your_name</span><span class="op">)</span> <span class="op">{</span>
     
-    paste0(your_name, ", you are the absolute best!")
+    <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">your_name</span>, <span class="st">", you are the absolute best!"</span><span class="op">)</span>
     
-}</code></pre>
+<span class="op">}</span></code></pre></div>
 </div>
 <div id="変更をコミットする" class="section level4">
 <h4 class="hasAnchor">
@@ -431,18 +437,19 @@ sum_plus_1(1, 4)</code></pre>
 <h4 class="hasAnchor">
 <a href="#%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88%E3%82%92%E6%9B%B8%E3%81%8F" class="anchor"></a>ドキュメントを書く</h4>
 <p>ドキュメントの作成を開始する非常に簡単な方法があります。 ドキュメント化する関数内にカーソルを置き、 メニューバーの‘Code’に移動して、‘Insert Roxygen Skeleton’をクリックします。 これにより、<code>praiseme</code> 関数にいくつかの行が自動的に追加されます。</p>
-<pre><code>#' Title
-#'
-#' @param your_name 
-#'
-#' @return
-#' @export
-#'
-#' @examples
-praiseme &lt;- function(your_name){
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#' Title</span>
+<span class="co">#'</span>
+<span class="co">#' @param your_name </span>
+<span class="co">#'</span>
+<span class="co">#' @return</span>
+<span class="co">#' @export</span>
+<span class="co">#'</span>
+<span class="co">#' @examples</span>
+<span class="va">praiseme</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">your_name</span><span class="op">)</span><span class="op">{</span>
 
-    paste0(your_name, ", you are the best!")
-}</code></pre>
+    <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">your_name</span>, <span class="st">", you are the best!"</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
 <p>あなたは <code>#'</code> で始まる新しい行があることに気付くでしょう。 これらはroxygenのコメントです。</p>
 <ul>
 <li>最初の文がドキュメントのタイトルになります。 これは、<code>help(praiseme)</code>を見ると表示され、各ヘルプファイルの上部に表示されます。 1行に収まる必要があります。またピリオドで終わってはいけません。</li>
@@ -459,21 +466,22 @@ praiseme &lt;- function(your_name){
 <code>@return</code> は、関数からの出力を記述します。 これは必ずしも必要ではありませんが、 関数が入力に応じて異なるタイプの出力を返す場合、 またはS3またはS4オブジェクトを返す場合はこれを書くのは良い考えです。</li>
 </ul>
 <p>それでは、 <code>praiseme</code> 関数のドキュメントを記入しましょう。</p>
-<pre><code>#' Praise the user
-#'
-#' \code{praiseme} returns praise incorporating a user-specified string.
-#'
-#' @param your_name A string specifying the name of the praisee.
-#'
-#' @return A string with the praise.
-#' @export
-#'
-#' @examples
-#' praiseme("Luke")
-praiseme &lt;- function(your_name){
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#' Praise the user</span>
+<span class="co">#'</span>
+<span class="co">#' \code{praiseme} returns praise incorporating a user-specified string.</span>
+<span class="co">#'</span>
+<span class="co">#' @param your_name A string specifying the name of the praisee.</span>
+<span class="co">#'</span>
+<span class="co">#' @return A string with the praise.</span>
+<span class="co">#' @export</span>
+<span class="co">#'</span>
+<span class="co">#' @examples</span>
+<span class="co">#' praiseme("Luke")</span>
+<span class="va">praiseme</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">your_name</span><span class="op">)</span><span class="op">{</span>
 
-    paste0(your_name, ", you are the best!")
-}</code></pre>
+    <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">your_name</span>, <span class="st">", you are the best!"</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
 <p>最後に説明する必要があるのは、roxygenのコメントの<code>@export</code>ステートメントです。 このステートメントは、今作成した関数がユーザーに使用可能であることを確認します。 Roxygen2は、この関数がエクスポートされることを示すために、 NAMESPACEにexport行を自動的に作成します。 名前空間の重要性を理解するには、以下のセクションを参照してください。</p>
 <p>上記は、 ドキュメント化とNAMESPACEに関する絶対的な基本であることに注意してください。 詳細については、この<a href="http://r-pkgs.had.co.nz/man.html">リンク</a>と この<a href="http://r-pkgs.had.co.nz/namespace.html">リンク</a> を確認することを強くお勧めします。</p>
 </div>
@@ -493,6 +501,53 @@ praiseme &lt;- function(your_name){
 <h4 class="hasAnchor">
 <a href="#%E5%A4%89%E6%9B%B4%E3%82%92%E3%82%B3%E3%83%9F%E3%83%83%E3%83%88%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%82%92%E5%BF%98%E3%82%8C%E3%81%AA%E3%81%84%E3%81%A7%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84-1" class="anchor"></a>変更をコミットすることを忘れないでください</h4>
 <p>これらの変更を再度コミットします。</p>
+</div>
+<div id="namespaceファイルについて" class="section level4">
+<h4 class="hasAnchor">
+<a href="#namespace%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6" class="anchor"></a>NAMESPACEファイルについて</h4>
+<p>NAMESPACEファイルは、 パッケージによって(エンドユーザーに)エクスポートされるオブジェクトと、 パッケージで使用できる(他のパッケージからインポートされた)オブジェクトを コントロールするために使用されます。 DESCRIPTIONファイルとは異なり、 NAMESPACEファイルは‘.dcf’ファイルではありません。 実際には、Rコードを含めるようになっています。 幸いなことに、<code>roxygen2</code>を使用してコードを文書化すると、 NAMESPACEファイルが自動的に作成されます。 これは高度なトピックであるため、 <code>roxygen2</code>を使用して自動的に生成する方法を説明する以外のことは ここでは取り上げません。 興味のある方は、この<a href="http://r-pkgs.had.co.nz/namespace.html">リンク</a> をたどってください。</p>
+</div>
+</div>
+<div id="ビルドインストールパッケージのテスト" class="section level3">
+<h3 class="hasAnchor">
+<a href="#%E3%83%93%E3%83%AB%E3%83%89%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AE%E3%83%86%E3%82%B9%E3%83%88" class="anchor"></a>ビルド、インストール、パッケージのテスト</h3>
+<p>我々はここで一旦パッケージングを終えました。 実際には、これはおそらくパッケージの書き始めであり、あとは これまで述べた下記と同じ戦略を使用して関数を追加していくだけです。</p>
+<ul>
+<li>関数を書く</li>
+<li>関数にドキュメントをつける</li>
+<li>ドキュメントとNAMESPACEファイルの作成</li>
+</ul>
+<p>最後に(または合間合間に)パッケージが機能するかどうかを確認する必要があります。 この場合は、パッケージがビルドされ、インストールできるかどうかを意味します。</p>
+<div id="パッケージをビルドしインストールする" class="section level4">
+<h4 class="hasAnchor">
+<a href="#%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%82%92%E3%83%93%E3%83%AB%E3%83%89%E3%81%97%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B" class="anchor"></a>パッケージをビルドしインストールする</h4>
+<p>まず、パッケージがビルドされるかどうかを確認しましょう。 これを行うには、RStudioの右上隅にある‘Build’ペインに移動し、 ‘More’をクリックします。 ここに‘Build Source Package’があります。 これにより、あなたのディレクトリで <a href="https://devtools.r-lib.org//reference/build.html">devtools::build()</a> が実行され、プラットフォームに依存しない、トランスポートに適した方法で、 すべてのパッケージコンテンツを含むtarファイルが作成されます。</p>
+<p>次に、パッケージを実際に操作できるかどうかを確認する必要があります。 つまり、パッケージをインストールして機能を実行できるかどうかを確認します。 これを行うには、‘Build’ペインの‘Install and Restart’ボタンをクリックします。 これにより、Rsessionが再起動し、パッケージがインストールされます。 これで、関数が機能したかどうかをテストして確認できます。</p>
+</div>
+<div id="パッケージをテストする" class="section level4">
+<h4 class="hasAnchor">
+<a href="#%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%82%92%E3%83%86%E3%82%B9%E3%83%88%E3%81%99%E3%82%8B" class="anchor"></a>パッケージをテストする</h4>
+<p>それでは、あなたのパッケージで遊んでみてください。 特に、ドキュメントが機能するかどうかを確認してください。 これには、コマンド<code>?praiseme</code>を使用します。</p>
+<p>パッケージが最初のテストが通ったら、正式にテストできます。 パッケージをテストする方法はいくつかあります。 最も簡単な方法は、‘Build’ペインに再度移動し、‘Check’をクリックすることです。 これにより、パッケージに対して <code>R CMD check</code> が実行され、 すべての例が実行されるだけでなく、パッケージがビルドされ、 再度インストールされます。</p>
+<p><a href="https://www.bioconductor.org/developers/package-guidelines/">Bioconductorのパッケージガイドライン</a> を見ると、パッケージがERRORやWARNINGなしで<code>R CMD build</code> と <code>R CMD check</code> に合格するだけでなく、 あなたのコードが他のBioconductorプロジェクトのパッケージとうまく融合するように 適切に文書化されていることも確認する必要があります。</p>
+<p>コードが正常であることを確認するための その他の要件にも合格する必要があることがわかります。 文書化されており、プロジェクトの残りの部分にうまく統合されること。 次のように、 BiocCheckへの準拠についてあなたのパッケージをテストすることもできます:</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Bioconductor/BiocCheck/issues">BiocCheck</a></span><span class="op">)</span>
+<span class="co"># This assume your working directory is the package directory.</span>
+<span class="fu"><a href="https://rdrr.io/pkg/BiocCheck/man/BiocCheck.html">BiocCheck</a></span><span class="op">(</span><span class="st">"."</span><span class="op">)</span></code></pre></div>
+<p>この時点までの手順に従っている場合、上記の関数を呼び出すと、 パッケージがBioconductorパッケージガイドラインに準拠するために 必要なものを示すリストオブジェクトが出力として生成されます。 BiocCheckの出力は、次の3つの異なるカテゴリに分類されます。</p>
+<ul>
+<li>Requirements は、常に必要であると私たちが確信しているものです。 これらのいくつかに失敗した場合は、すぐに修正することを目指す必要があります。</li>
+<li>Recommendations は、通常、変更することが非常に重要なものですが、 その解釈はコンテキストに依存する場合があります。 これらのいくつかに失敗している場合は、可能であれば修正を試みる必要があります。</li>
+<li>Considerations は通常は良いアイデアです。 ただし、特定の場合に適用される場合と適用されない場合があります。</li>
+</ul>
+<p>最後に、別の良いアイデアは、パッケージで次のコードを実行することです:</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mangothecat/goodpractice">goodpractice</a></span><span class="op">)</span>
+<span class="co"># This assume your working directory is the package directory.</span>
+<span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/goodpractice/man/gp.html">gp</a></span><span class="op">(</span><span class="st">"."</span><span class="op">)</span>
+<span class="va">g</span></code></pre></div>
+<p>これは、あなたのパッケージに合わせた Rパッケージを構築する際のグッドプラクティスに関するアドバイスを提供する <code>goodpractice</code> パッケージを利用しています。 アドバイスには、避けるべき関数と構文、パッケージ構造、コードの複雑さ、 コードのフォーマットなどが含まれます。</p>
 </div>
 </div>
 </div>
