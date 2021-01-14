@@ -1047,3 +1047,30 @@ S4クラスを使用する場合は、いくつかの優れたガイドがあり
 とこの
 [リンク](https://kasperdanielhansen.github.io/genbioconductor/html/R_S4.html)
 をチェックしてください。
+
+## 行き詰まってしまったら
+
+### その他のリソース
+
+Rパッケージを書くことのトピックに関する多くの優れたチュートリアル、本、
+ブログがあります。
+下記は私たちのお気に入りです:
+
+- [R packages, Hadley Wickham](http://r-pkgs.had.co.nz/)
+- [How to develop a good R packages (for open science), Maelle Salmon](https://masalmon.eu/2017/12/11/goodrpackages/)
+- [rOpenSci Packages: Development, Maintenance and Peer Review, rOpenSci software review editorial team](https://devguide.ropensci.org/)
+- [R package primer, Karl Broman](https://kbroman.org/pkg_primer/)
+
+特にBioconductorパッケージを作成するには、次のリンクをお勧めします:
+
+- [R package workshop](https://combine-australia.github.io/r-pkg-dev/)
+- [Building packages for Bioconductor](https://bioconductor.org/developers/how-to/buildingPackagesForBioc/)
+- [Package Guidelines](https://bioconductor.org/developers/package-guidelines/)
+- [Package Submission](http://bioconductor.org/developers/package-submission/)
+- [Make a Package](https://bioconductor.org/help/course-materials/2017/BioC2017/DDay/Workshop/MakeAPackage.html)
+- [Using Bioconductor with RStudio Package Manager](https://support.rstudio.com/hc/en-us/articles/360016400354-Using-BioConductor-with-RStudio-Package-Manager)
+
+また、
+このチュートリアルが失敗したときにパッケージの開発をガイドする素晴らしい
+[biocthis](https://github.com/lcolladotor/biocthis/)
+パッケージもチェックしてください。
