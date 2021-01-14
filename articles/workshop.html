@@ -293,8 +293,8 @@
 <p>あなたの最初のパッケージを作るために<code>biocthis</code>を使用します。 <code>biocthis</code>はBioconductorパッケージ作成のセットアップを自動化してくれる Bioconductorパッケージです。 この教材のために、「praiseme」という名のパッケージを作成します。 このパッケージはtempフォルダと呼ばれる一時ファイルの置き場所に作られます。 (そのファイルパスはOSによって異なります。)</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pkgdir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/biocthis/man/biocthis_example_pkg.html">biocthis_example_pkg</a></span><span class="op">(</span><span class="st">"praiseme"</span>, use_git <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="co">#&gt; ✔ Creating '/tmp/RtmpvWPeXQ/praiseme/'</span>
-<span class="co">#&gt; ✔ Setting active project to '/tmp/RtmpvWPeXQ/praiseme'</span>
+<span class="co">#&gt; ✔ Creating '/tmp/Rtmp2O3p0N/praiseme/'</span>
+<span class="co">#&gt; ✔ Setting active project to '/tmp/Rtmp2O3p0N/praiseme'</span>
 <span class="co">#&gt; ✔ Creating 'R/'</span>
 <span class="co">#&gt; ✔ Writing 'DESCRIPTION'</span>
 <span class="co">#&gt; Package: praiseme</span>
@@ -311,7 +311,7 @@
 <span class="co">#&gt; RoxygenNote: 7.1.1</span>
 <span class="co">#&gt; ✔ Writing 'NAMESPACE'</span>
 <span class="co">#&gt; ✔ Setting active project to '&lt;no active project&gt;'</span>
-<span class="co">#&gt; ✔ Setting active project to '/tmp/RtmpvWPeXQ/praiseme'</span></code></pre></div>
+<span class="co">#&gt; ✔ Setting active project to '/tmp/Rtmp2O3p0N/praiseme'</span></code></pre></div>
 <p>このコードを実行すると新たに「praiseme」パッケージ用のRStudioのウインドウ が作られます。そのRStudioの画面を見ると、‘Files’タブに いくつかのファイルが表示されています。 これらは、パッケージを作成するために必要なファイルです (biocthisがこれらのファイルを作成しました)。 ただしいくつかのファイル(’.Rbuildignore’、‘.Rhistory’、‘praiseme.Rproj’) は 「パッケージ作成」には必要無く、パッケージ構築の管理を「支援する」ため の追加物です。 これらの追加物はGitでバージョン管理する必要はありません。</p>
 </div>
 <div id="パッケージについて説明する" class="section level4">
@@ -644,6 +644,51 @@ knitr::opts_chunk$set(
 <p>今度こそ、プロジェクト全体とGitHubに加えた変更の履歴をプッシュします。 ここで、パッケージを他の人がダウンロードできるようになります。 これを行うには、RStudio右上隅にある‘Git’ペインに移動します。 そこで‘push’ボタンをクリックします。 その後、GitHubにアクセスして、あなたのpraisemeリポジトリを見つけます。 次のようなものが見えるはずです:</p>
 <p><img src="figures/gh_final.png" width="300"></p>
 <p>他の人が <code><a href="https://devtools.r-lib.org//reference/remote-reexports.html">devtools::install_github("your_name/praiseme")</a></code> を使用して、 パッケージを簡単にインストールできるようになったことに注意してください。 これを試してみたい場合は、install_github関数を実行して GitHubからパッケージをインストールしてください。</p>
+</div>
+</div>
+</div>
+<div id="bioconductorへの提出プロセス" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bioconductor%E3%81%B8%E3%81%AE%E6%8F%90%E5%87%BA%E3%83%97%E3%83%AD%E3%82%BB%E3%82%B9" class="anchor"></a>Bioconductorへの提出プロセス</h2>
+<div id="あなたの提出" class="section level3">
+<h3 class="hasAnchor">
+<a href="#%E3%81%82%E3%81%AA%E3%81%9F%E3%81%AE%E6%8F%90%E5%87%BA" class="anchor"></a>あなたの提出</h3>
+<p>Bioconductorの送信プロセスはGitHubを介して行います。 私たちはバージョン管理を使用してパッケージを開発しているので、 すでに最初のハードルを超えています。 パッケージが <a href="https://bioconductor.org/developers/package-submission/">基本的な要件とテスト</a> に合格すると、提出する準備が整います。 提出は実際にはかなり簡単です。 <code>README.md</code>ファイルのガイドラインに従って、 <a href="https://github.com/Bioconductor/Contributions">https://github.com/Bioconductor/Contributions</a> で新しいissueを開いて送信します。</p>
+</div>
+<div id="提出後" class="section level3">
+<h3 class="hasAnchor">
+<a href="#%E6%8F%90%E5%87%BA%E5%BE%8C" class="anchor"></a>提出後</h3>
+<p>先のissueで新しいパッケージには、最初は‘1. awaiting moderation’ というラベルが付けられます。 Bioconductorチームのメンバーは、 パッケージがBioconductorに向いていることを確認するために、 パッケージを非常に簡単に調べます。 適切なパッケージには‘2. review in progress’というラベルが付け直されます。</p>
+<p>パッケージはBioconductorのビルドシステムに提出されます。 システムはGitHubからパッケージをチェックアウトします。 次に、<code>R CMD build</code>を実行して、ソースコード、ビネット、およびマニュアルページ の‘tarball’を作成します。 そしてtarballで<code>R CMD check</code>を実行し、 パッケージが標準のRプログラミングのベストプラクティスに準拠していることを 確認します。 Bioconductorは、カスタムの <a href="https://github.com/Bioconductor/Contributions#r-cmd-check-environment">R CMD check environment</a> を利用することを選んでいます。 最後に、ビルドシステムは <code>R CMD BiocCheck</code> を実行して、 パッケージが <a href="https://bioconductor.org/packages/devel/bioc/html/BiocCheck.html">Bioconductor BiocCheck standards</a> に準拠していることを確認します。 システムは、3つのプラットフォーム(Linux、Mac OS X、およびWindows)で、 <a href="https://bioconductor.org/developers/how-to/useDevel/">Bioconductorの‘devel’バージョン</a> を使用してこれらの手順を実行します。 これらの手順が完了すると、 ビルドレポートへのリンクが新しいパッケージのissueにコメントで追加されます。 パッケージを送信する前に、 自分のコンピューターでBioconductorの‘devel’バージョンを使って これらのチェックを実行することにより、サプライズを避けてください。</p>
+<p>ビルドレポートに問題が示されている場合は、パッケージを変更し、 GitHubリポジトリのデフォルトブランチに変更をコミットします。 理解できない問題がある場合は、 <a href="https://stat.ethz.ch/mailman/listinfo/bioc-devel">bioc-devel mailing list</a> で助けを求めてください。</p>
+<p>新しいビルドをトリガーするには、コミットにバージョンバンプを含めます (DESCRIPTION ファイル中のVersion: の後ろを、例えば 0.99.0 から 0.99.1 にする)。</p>
+<p>パッケージがビルドされ、チェック結果がエラーや(回避可能な)警告無しとなると、 Bioconductorのチームメンバーがパッケージの技術レビューを提供します。 他のBioconductor開発者およびドメインの専門知識を持つユーザーは、 追加のコミュニティ解説をここに提供することをお勧めします。 レビュー担当者は、あなたが作成したissueにコメントを追加します。</p>
+<p>あなたはレビューア達が提起した問題に対応します。 あなたは一次レビューアに返信する必要があります。 またコミュニティの解説を検討することを強くお勧めします。 通常、応答にはコードの変更が含まれます。 これらをGitHubリポジトリのデフォルトのブランチにコミットして、 後続のビルドをトリガーします。 すべての懸念事項に対応したら、issueにコメントを追加してその内容を説明します。</p>
+<p>レビューアはあなたの回答を評価し、おそらくさらなる修正や説明を提案します。 その後、レビュー担当者は、Bioconductorに含めるためにパッケージを受け入れるか、 拒否します。 ラベル‘2. review in progress’は‘3a. accepted’か‘3b. declined’に 置き換えられます。</p>
+<p>パッケージが承認されると、そのパッケージは BioconductorのGitソース管理リポジトリとnightly‘devel’ビルドに追加されます。</p>
+</div>
+<div id="リリースサイクル" class="section level3">
+<h3 class="hasAnchor">
+<a href="#%E3%83%AA%E3%83%AA%E3%83%BC%E3%82%B9%E3%82%B5%E3%82%A4%E3%82%AF%E3%83%AB" class="anchor"></a>リリースサイクル</h3>
+<p>毎年2回のリリースがあります(4月と10月頃)。 リリーススケジュールには、各リリースのタイムテーブルと期限が示されます。 1リリースサイクルでは通常、‘devel’と‘release’の2つのバージョンのパッケージ が生成されます。 これらのブランチの概念に精通していることが重要です。 パッケージが承認されると、最初は‘devel’ブランチになります。 現在の‘devel’ブランチが次の‘release’になります。 ほとんどのユーザーは‘release’ブランチを使用することが期待されているため、 次のリリースまですぐにパッケージにアクセスすることはできません。 バグ修正は両方のブランチで修正できますが、 新機能は‘devel’ブランチにのみ追加する必要があります。 リリースサイクルは<a href="https://bioconductor.org/developers/release-schedule/">ここ</a> で確認できます。</p>
+</div>
+<div id="私たちが知っておくと良いことは何でしょうか" class="section level3">
+<h3 class="hasAnchor">
+<a href="#%E7%A7%81%E3%81%9F%E3%81%A1%E3%81%8C%E7%9F%A5%E3%81%A3%E3%81%A6%E3%81%8A%E3%81%8F%E3%81%A8%E8%89%AF%E3%81%84%E3%81%93%E3%81%A8%E3%81%AF%E4%BD%95%E3%81%A7%E3%81%97%E3%82%87%E3%81%86%E3%81%8B" class="anchor"></a>私たちが知っておくと良いことは何でしょうか？</h3>
+<div id="依存関係に注意してください" class="section level4">
+<h4 class="hasAnchor">
+<a href="#%E4%BE%9D%E5%AD%98%E9%96%A2%E4%BF%82%E3%81%AB%E6%B3%A8%E6%84%8F%E3%81%97%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84" class="anchor"></a>依存関係に注意してください</h4>
+<p>あなたのパッケージが使用するその他のパッケージは、 <a href="https://cran.r-project.org/web/packages/available_packages_by_name.html">CRAN</a> または <a href="https://bioconductor.org/packages/release/BiocViews.html">Bioconductor</a> のいずれかで利用できる必要があります。 既存かつ十分にテストされた他のパッケージ、特にBioconductorパッケージの機能 を利用することは重要です。 ただし、パッケージに依存関係を含めるたびに、 パッケージのメンテナンスが増えることに注意してください。 依存関係の変更は、パッケージに大混乱をもたらす可能性があり、 面倒な変更を行う必要があります。</p>
+</div>
+<div id="パッケージサイズに注意してください" class="section level4">
+<h4 class="hasAnchor">
+<a href="#%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%82%B5%E3%82%A4%E3%82%BA%E3%81%AB%E6%B3%A8%E6%84%8F%E3%81%97%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84" class="anchor"></a>パッケージサイズに注意してください</h4>
+<p>GitHubはすべてのファイルを追跡し、ファイルが削除された場合でも記録を保持します。 つまり、パッケージにファイルを含めると、圧縮された方法ではありますが、 ファイルは常にパッケージサイズに影響します。 Bioconductorソフトウェアパッケージは5MBまでに制限されているため、 パッケージ開発の初期段階でも大きなファイルを追加して追跡することは避けたいです。 開発の初期段階でそのようなファイルを絶対に含める必要がある場合は、 <code>.gitignore</code>ファイルにそれを含めることを忘れないでください。</p>
+</div>
+<div id="s4クラスを恐れないでください" class="section level4">
+<h4 class="hasAnchor">
+<a href="#s4%E3%82%AF%E3%83%A9%E3%82%B9%E3%82%92%E6%81%90%E3%82%8C%E3%81%AA%E3%81%84%E3%81%A7%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84" class="anchor"></a>S4クラスを恐れないでください</h4>
+<p>「Bioconductorは、よく知られている、 より広く使用されているS3クラスよりも複雑なS4クラスのシステムを好む」 、と聞いたことがあるかもしれません。 実際には、S4クラスに対するこの設定は、 新しい表現の実装に取り掛かっている場合にのみ影響します。 S4クラスを使用する場合は、いくつかの優れたガイドがあります。 この <a href="http://adv-r.had.co.nz/S4.html">リンク</a> とこの <a href="https://kasperdanielhansen.github.io/genbioconductor/html/R_S4.html">リンク</a> をチェックしてください。</p>
 </div>
 </div>
 </div>
