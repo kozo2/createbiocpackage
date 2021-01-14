@@ -293,8 +293,8 @@
 <p>あなたの最初のパッケージを作るために<code>biocthis</code>を使用します。 <code>biocthis</code>はBioconductorパッケージ作成のセットアップを自動化してくれる Bioconductorパッケージです。 この教材のために、「praiseme」という名のパッケージを作成します。 このパッケージはtempフォルダと呼ばれる一時ファイルの置き場所に作られます。 (そのファイルパスはOSによって異なります。)</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pkgdir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/biocthis/man/biocthis_example_pkg.html">biocthis_example_pkg</a></span><span class="op">(</span><span class="st">"praiseme"</span>, use_git <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="co">#&gt; ✔ Creating '/tmp/RtmpxtiF0t/praiseme/'</span>
-<span class="co">#&gt; ✔ Setting active project to '/tmp/RtmpxtiF0t/praiseme'</span>
+<span class="co">#&gt; ✔ Creating '/tmp/RtmpzcxSDQ/praiseme/'</span>
+<span class="co">#&gt; ✔ Setting active project to '/tmp/RtmpzcxSDQ/praiseme'</span>
 <span class="co">#&gt; ✔ Creating 'R/'</span>
 <span class="co">#&gt; ✔ Writing 'DESCRIPTION'</span>
 <span class="co">#&gt; Package: praiseme</span>
@@ -311,7 +311,7 @@
 <span class="co">#&gt; RoxygenNote: 7.1.1</span>
 <span class="co">#&gt; ✔ Writing 'NAMESPACE'</span>
 <span class="co">#&gt; ✔ Setting active project to '&lt;no active project&gt;'</span>
-<span class="co">#&gt; ✔ Setting active project to '/tmp/RtmpxtiF0t/praiseme'</span></code></pre></div>
+<span class="co">#&gt; ✔ Setting active project to '/tmp/RtmpzcxSDQ/praiseme'</span></code></pre></div>
 <p>このコードを実行すると新たに「praiseme」パッケージ用のRStudioのウインドウ が作られます。そのRStudioの画面を見ると、‘Files’タブに いくつかのファイルが表示されています。 これらは、パッケージを作成するために必要なファイルです (biocthisがこれらのファイルを作成しました)。 ただしいくつかのファイル(’.Rbuildignore’、‘.Rhistory’、‘praiseme.Rproj’) は 「パッケージ作成」には必要無く、パッケージ構築の管理を「支援する」ため の追加物です。 これらの追加物はGitでバージョン管理する必要はありません。</p>
 </div>
 <div id="パッケージについて説明する" class="section level4">
@@ -548,6 +548,31 @@ Encoding: UTF-8</code></pre>
 <span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/goodpractice/man/gp.html">gp</a></span><span class="op">(</span><span class="st">"."</span><span class="op">)</span>
 <span class="va">g</span></code></pre></div>
 <p>これは、あなたのパッケージに合わせた Rパッケージを構築する際のグッドプラクティスに関するアドバイスを提供する <code>goodpractice</code> パッケージを利用しています。 アドバイスには、避けるべき関数と構文、パッケージ構造、コードの複雑さ、 コードのフォーマットなどが含まれます。</p>
+</div>
+</div>
+<div id="同様に必要とされることただしこの教材ではカバーされていないこと" class="section level3">
+<h3 class="hasAnchor">
+<a href="#%E5%90%8C%E6%A7%98%E3%81%AB%E5%BF%85%E8%A6%81%E3%81%A8%E3%81%95%E3%82%8C%E3%82%8B%E3%81%93%E3%81%A8%E3%81%9F%E3%81%A0%E3%81%97%E3%81%93%E3%81%AE%E6%95%99%E6%9D%90%E3%81%A7%E3%81%AF%E3%82%AB%E3%83%90%E3%83%BC%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%81%AA%E3%81%84%E3%81%93%E3%81%A8" class="anchor"></a>同様に必要とされること(ただしこの教材ではカバーされていないこと)</h3>
+<p>パッケージには、Bioconductorにとって重要で必要な他のパーツいくつかありますが、 ここでは説明しません。 これらを簡単に紹介してから、リンクを参照して詳細を確認します。</p>
+<div id="vignette" class="section level4">
+<h4 class="hasAnchor">
+<a href="#vignette" class="anchor"></a>Vignette</h4>
+<p>Vignette(ビネット)は、パッケージの長い形式のガイドです。 関数のドキュメントは、必要な関数の名前がわかっている場合は便利ですが、 それ以外の場合は役に立ちません。 ビネットは、本の章や学術論文のようなものです。 パッケージが解決するように設計されている問題を説明し、 それを解決する方法を読者に示すことができます。 ビネットは、機能を有用なカテゴリに分割し、 問題を解決するために複数の関数をコーディネートする方法を示す必要があります。 ビネットの詳細については、この<a href="https://r-pkgs.org/vignettes.html">リンク</a> にアクセスしてください。</p>
+</div>
+<div id="ユニットテスト" class="section level4">
+<h4 class="hasAnchor">
+<a href="#%E3%83%A6%E3%83%8B%E3%83%83%E3%83%88%E3%83%86%E3%82%B9%E3%83%88" class="anchor"></a>ユニットテスト</h4>
+<p>これらは自動化されたテストであり、 パッケージを初めてインストールするときに実行するテストに少し似ています。 ただし、あなたがこれらを実行する代わりに、コンピューターが処理します。 これには、これらのテストの実行方法をコンピューターに指示する必要があります。 これは、<code>\tests</code>フォルダーにある単体テストを作成する場合に、あなたが行うこと になります。 この目的のためにはRパッケージ<code>testthat</code>が必要になります。 詳細を知りたい場合は、この<a href="https://r-pkgs.org/tests.html">リンク</a> をたどってください。</p>
+</div>
+<div id="newsファイル" class="section level4">
+<h4 class="hasAnchor">
+<a href="#news%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB" class="anchor"></a>NEWSファイル</h4>
+<p><code>NEWS.md</code>ファイルは、既存のユーザーを対象としています。 各リリースでのすべてのAPIの変更を一覧表示する必要があります。 パッケージニュースに使用できる形式はいくつかありますが、 <code>NEWS.md</code>をお勧めします。 GitHubで十分にサポートされており、CRANで許可されており、 他の形式で簡単に再利用できます。 NEWSファイルの詳細については、この<a href="http://r-pkgs.had.co.nz/release.html">リンク</a> にアクセスしてください。</p>
+</div>
+<div id="github-actions" class="section level4">
+<h4 class="hasAnchor">
+<a href="#github-actions" class="anchor"></a>Github actions</h4>
+<p>Github actionsを使用すると、 変更をコミットするたびに、パッケージングに関するチェックを 自動的に行うことができます。 これにより、エラーをすばやくキャッチできます。 ただし、設定が難しい場合があります。 大変な作業を行うパッケージの場合これを使うのは良いことです。 <code>biocthis</code>の助けを借りるとGithub actionsを簡単に追加できます。 詳細については、<code>biocthis</code>の関数<code><a href="https://rdrr.io/pkg/biocthis/man/use_bioc_github_action.html">use_bioc_github_action()</a></code>を確認してください。</p>
 </div>
 </div>
 </div>
