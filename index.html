@@ -81,57 +81,61 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="buildabiocworkshop" class="section level1">
+<div id="bioconductorパッケージの作り方" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#buildabiocworkshop" class="anchor"></a>BuildABiocWorkshop</h1></div>
-<p>This package is a template for building a Bioconductor workshop. The package includes Github actions to:</p>
-<ol>
-<li>Set up bioconductor/bioconductor_docker:devel on Github resources</li>
-<li>Install package dependencies for your package (based on the <code>DESCRIPTION</code> file)</li>
-<li>Run <code><a href="https://rdrr.io/pkg/rcmdcheck/man/rcmdcheck.html">rcmdcheck::rcmdcheck</a></code>
-</li>
-<li>Build a pkgdown website and push it to github pages</li>
-<li>Build a docker image with the installed package and dependencies</li>
-</ol>
-<div id="responsibilities" class="section level2">
+<a href="#bioconductor%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AE%E4%BD%9C%E3%82%8A%E6%96%B9" class="anchor"></a>Bioconductorパッケージの作り方</h1></div>
+<div id="主要なリソース" class="section level2">
 <h2 class="hasAnchor">
-<a href="#responsibilities" class="anchor"></a>Responsibilities</h2>
-<p>This year, package authors will be primarily responsible for:</p>
-<ol>
-<li>Creating a landing site of their choosing for their workshops (a website). This website should be listed in the <code>DESCRIPTION</code> file as the <code>URL</code>.</li>
-<li>Creating a docker account and image that will contain workshop materials and the installed packages necessary to run those materials. The name of the resulting docker image, including “tag” if desired, should be listed in a non-standard tag, <code>DockerImage:</code> in the <code>DESCRIPTION</code> file.</li>
-</ol>
-<p>Both of those tasks can be accomplished using the Github actions included in this template package. The vignette accompanying this package describes how to accomplish both of these tasks.</p>
-</div>
-<div id="details" class="section level2">
-<h2 class="hasAnchor">
-<a href="#details" class="anchor"></a>Details</h2>
-<p>For detailed instructions, see the <code>How to build a workshop</code> article/vignette.</p>
-</div>
-<div id="results-of-successful-deployment" class="section level2">
-<h2 class="hasAnchor">
-<a href="#results-of-successful-deployment" class="anchor"></a>Results of successful deployment</h2>
+<a href="#%E4%B8%BB%E8%A6%81%E3%81%AA%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9" class="anchor"></a>主要なリソース</h2>
 <ul>
-<li>A working docker image that contains the installed package and dependencies.</li>
-<li>An up-to-date <code>pkgdown</code> website at <a href="https://YOURUSERNAME.github.io/YOURREPOSITORYNAME/" class="uri">https://YOURUSERNAME.github.io/YOURREPOSITORYNAME/</a>
+<li>教材: <a href="https://biopackathon.github.io/createbiocpackage/" class="uri">https://biopackathon.github.io/createbiocpackage/</a>
 </li>
-<li>Docker image will be tagged with <code>latest</code>, <code>sha-XXXXXX</code> where <code>XXXXXX</code> is the hash of the current <code>master</code> commit, and <code>master</code>.</li>
 </ul>
 </div>
-<div id="to-use-the-resulting-image" class="section level2">
+<div id="教材の説明" class="section level2">
 <h2 class="hasAnchor">
-<a href="#to-use-the-resulting-image" class="anchor"></a>To use the resulting image:</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="ex">docker</span> run -e PASSWORD=<span class="op">&lt;</span>choose_a_password_for_rstudio<span class="op">&gt;</span> -p 8787:8787 YOURDOCKERIMAGENAME</span></code></pre></div>
-<p>Once running, navigate to <a href="https://localhost:8787/" class="uri">https://localhost:8787/</a> and then login with <code>rstudio</code>:<code>yourchosenpassword</code>.</p>
-<p>To try with <strong>this</strong> repository docker image:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="ex">docker</span> run -e PASSWORD=abc -p 8787:8787 seandavi/buildabiocworkshop2020</span></code></pre></div>
-<p><em>NOTE</em>: Running docker that uses the password in plain text like above exposes the password to others in a multi-user system (like a shared workstation or compute node). In practice, consider using an environment variable instead of plain text to pass along passwords and other secrets in docker command lines.</p>
+<a href="#%E6%95%99%E6%9D%90%E3%81%AE%E8%AA%AC%E6%98%8E" class="anchor"></a>教材の説明</h2>
+<p>この教材では、Bioconductorパッケージの作成方法の概要を説明します。</p>
+<p>学習者は、Bioconductorパッケージが特別な理由、パッケージの作成を開始する方法、 およびそのパッケージの情報を広める方法を学びます。 この教材では、入門資料の説明、「ライブ」コーディング、を行います。 これらはすべて、以下のコンテンツを基にしています。</p>
 </div>
-<div id="whatcha-get" class="section level2">
+<div id="インストラクター" class="section level2">
 <h2 class="hasAnchor">
-<a href="#whatcha-get" class="anchor"></a>Whatcha get</h2>
-<p><a href="https://seandavi.github.io/BuildABiocWorkshop" class="uri">https://seandavi.github.io/BuildABiocWorkshop</a></p>
-<p><img src="https://github.com/seandavi/BuildABiocWorkshop/raw/master/inst/images/dockerhub_result.png" alt="dockerhub"></p>
+<a href="#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%BC" class="anchor"></a>インストラクター</h2>
+<ul>
+<li>
+<a href="https://twitter.com/kozo2">西田孝三 Kozo Nishida</a> (<a href="mailto:kozo.nishida@gmail.com" class="email">kozo.nishida@gmail.com</a>)</li>
+</ul>
+</div>
+<div id="前提条件" class="section level2">
+<h2 class="hasAnchor">
+<a href="#%E5%89%8D%E6%8F%90%E6%9D%A1%E4%BB%B6" class="anchor"></a>前提条件</h2>
+<ul>
+<li>Rの構文の基本的な知識</li>
+<li>Githubアカウント</li>
+</ul>
+</div>
+<div id="目標と目的" class="section level2">
+<h2 class="hasAnchor">
+<a href="#%E7%9B%AE%E6%A8%99%E3%81%A8%E7%9B%AE%E7%9A%84" class="anchor"></a>目標と目的</h2>
+<div id="学習目標" class="section level3">
+<h3 class="hasAnchor">
+<a href="#%E5%AD%A6%E7%BF%92%E7%9B%AE%E6%A8%99" class="anchor"></a>学習目標</h3>
+<ul>
+<li>パッケージ作成の目的を理解する</li>
+<li>パッケージの基本的な構成要素について学ぶ</li>
+<li>初めてのシンプルなパッケージを開発する</li>
+<li>バージョン管理に精通する</li>
+</ul>
+</div>
+</div>
+<div id="インストール" class="section level2">
+<h2 class="hasAnchor">
+<a href="#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB" class="anchor"></a>インストール</h2>
+<p>この教材では、Bioconductorバージョン3.12を使用します。</p>
+<p>以下で、この教材に必要なパッケージをインストールできます。</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">BiocManager</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"usethis"</span>, <span class="st">"biocthis"</span>, <span class="st">"roxygen2"</span>, <span class="st">"devtools"</span>, <span class="st">"goodpractice"</span>, <span class="st">"BiocCheck"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
   </div>
