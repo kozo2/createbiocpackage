@@ -3,7 +3,7 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   workshop: workshop.html
-last_built: 2021-01-14T03:06Z
+last_built: 2021-01-14T03:52Z
 urls:
   reference: https://biopackathon.github.io/CreateBiocPackage/reference
   article: https://biopackathon.github.io/CreateBiocPackage/articles

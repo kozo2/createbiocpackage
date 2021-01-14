@@ -293,8 +293,8 @@
 <p>あなたの最初のパッケージを作るために<code>biocthis</code>を使用します。 <code>biocthis</code>はBioconductorパッケージ作成のセットアップを自動化してくれる Bioconductorパッケージです。 この教材のために、「praiseme」という名のパッケージを作成します。 このパッケージはtempフォルダと呼ばれる一時ファイルの置き場所に作られます。 (そのファイルパスはOSによって異なります。)</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pkgdir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/biocthis/man/biocthis_example_pkg.html">biocthis_example_pkg</a></span><span class="op">(</span><span class="st">"praiseme"</span>, use_git <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="co">#&gt; ✔ Creating '/tmp/RtmpzcxSDQ/praiseme/'</span>
-<span class="co">#&gt; ✔ Setting active project to '/tmp/RtmpzcxSDQ/praiseme'</span>
+<span class="co">#&gt; ✔ Creating '/tmp/RtmpvWPeXQ/praiseme/'</span>
+<span class="co">#&gt; ✔ Setting active project to '/tmp/RtmpvWPeXQ/praiseme'</span>
 <span class="co">#&gt; ✔ Creating 'R/'</span>
 <span class="co">#&gt; ✔ Writing 'DESCRIPTION'</span>
 <span class="co">#&gt; Package: praiseme</span>
@@ -311,7 +311,7 @@
 <span class="co">#&gt; RoxygenNote: 7.1.1</span>
 <span class="co">#&gt; ✔ Writing 'NAMESPACE'</span>
 <span class="co">#&gt; ✔ Setting active project to '&lt;no active project&gt;'</span>
-<span class="co">#&gt; ✔ Setting active project to '/tmp/RtmpzcxSDQ/praiseme'</span></code></pre></div>
+<span class="co">#&gt; ✔ Setting active project to '/tmp/RtmpvWPeXQ/praiseme'</span></code></pre></div>
 <p>このコードを実行すると新たに「praiseme」パッケージ用のRStudioのウインドウ が作られます。そのRStudioの画面を見ると、‘Files’タブに いくつかのファイルが表示されています。 これらは、パッケージを作成するために必要なファイルです (biocthisがこれらのファイルを作成しました)。 ただしいくつかのファイル(’.Rbuildignore’、‘.Rhistory’、‘praiseme.Rproj’) は 「パッケージ作成」には必要無く、パッケージ構築の管理を「支援する」ため の追加物です。 これらの追加物はGitでバージョン管理する必要はありません。</p>
 </div>
 <div id="パッケージについて説明する" class="section level4">
@@ -573,6 +573,77 @@ Encoding: UTF-8</code></pre>
 <h4 class="hasAnchor">
 <a href="#github-actions" class="anchor"></a>Github actions</h4>
 <p>Github actionsを使用すると、 変更をコミットするたびに、パッケージングに関するチェックを 自動的に行うことができます。 これにより、エラーをすばやくキャッチできます。 ただし、設定が難しい場合があります。 大変な作業を行うパッケージの場合これを使うのは良いことです。 <code>biocthis</code>の助けを借りるとGithub actionsを簡単に追加できます。 詳細については、<code>biocthis</code>の関数<code><a href="https://rdrr.io/pkg/biocthis/man/use_bioc_github_action.html">use_bioc_github_action()</a></code>を確認してください。</p>
+</div>
+</div>
+<div id="情報を広めることによって締めくくる" class="section level3">
+<h3 class="hasAnchor">
+<a href="#%E6%83%85%E5%A0%B1%E3%82%92%E5%BA%83%E3%82%81%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AB%E3%82%88%E3%81%A3%E3%81%A6%E7%B7%A0%E3%82%81%E3%81%8F%E3%81%8F%E3%82%8B" class="anchor"></a>情報を広めることによって締めくくる</h3>
+<p>これで、最初のパッケージを配布する準備がほぼ整いました。</p>
+<div id="readmeを追加する" class="section level4">
+<h4 class="hasAnchor">
+<a href="#readme%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%99%E3%82%8B" class="anchor"></a>Readmeを追加する</h4>
+<p>パッケージを世界と共有する前に、 パッケージに何が期待できるかを新しいユーザーに伝えるドキュメントを作成します。 これが、GitHubのウェブページに表示される<code>README.md</code>ファイルの目的です。 開始する最も簡単な方法は、 <a href="https://usethis.r-lib.org/reference/use_readme_rmd.html">usethis::use_readme_rmd()</a> を使用することです。 これにより、テンプレートの<code>README.Rmd</code>が作成され、.Rbuildignoreにも追加されます。 テンプレートは次のようになります。</p>
+<pre><code>---
+output: github_document
+---
+&lt;!-- README.md is generated from README.Rmd. Please edit that file --&gt;
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#&gt;",
+  fig.path = "README-"
+)
+```</code></pre>
+<p>次に、パッケージの目的を説明し、 例を追加した独自の小さなREADMEファイルを作成します。 README.Rmdを変更することを忘れないでください。 次に、README.Rmdを(knitrというRパッケージを使って)再びknitする必要があります。 これを行うのは、RStudioのエディターの上部にある‘Knit’ボタンを クリックするとできます。</p>
+<p>R Markdownに慣れていない場合は、この必須の <a href="https://rmarkdown.rstudio.com/lesson-1.html">チュートリアル</a>と、 RStudio上部のツールバーにあるチートシートを確認してください。 ‘Help’、‘Cheatsheets’の順にクリックすると、 “R Markdown Cheat Sheet”が表示されます。</p>
+<p>README.Rmdの例を次に示します。</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1"></a>---</span>
+<span id="cb14-2"><a href="#cb14-2"></a>output: github_document</span>
+<span id="cb14-3"><a href="#cb14-3"></a>---</span>
+<span id="cb14-4"><a href="#cb14-4"></a></span>
+<span id="cb14-5"><a href="#cb14-5"></a>&lt;!--<span class="co"> README.md is generated from README.Rmd. Please edit that file --&gt;</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a></span>
+<span id="cb14-7"><a href="#cb14-7"></a>``{r setup, include = FALSE}</span>
+<span id="cb14-8"><a href="#cb14-8"></a>knitr::opts_chunk$set(</span>
+<span id="cb14-9"><a href="#cb14-9"></a>  collapse = TRUE,</span>
+<span id="cb14-10"><a href="#cb14-10"></a>  comment = "#&gt;",</span>
+<span id="cb14-11"><a href="#cb14-11"></a>  fig.path = "man/figures/README-",</span>
+<span id="cb14-12"><a href="#cb14-12"></a>  out.width = "100%"</span>
+<span id="cb14-13"><a href="#cb14-13"></a>)</span>
+<span id="cb14-14"><a href="#cb14-14"></a><span class="bn">```</span></span>
+<span id="cb14-15"><a href="#cb14-15"></a><span class="bn"># praiseme</span></span>
+<span id="cb14-16"><a href="#cb14-16"></a></span>
+<span id="cb14-17"><a href="#cb14-17"></a><span class="bn">The goal of praiseme is to deliver praise to nice people.</span></span>
+<span id="cb14-18"><a href="#cb14-18"></a></span>
+<span id="cb14-19"><a href="#cb14-19"></a><span class="bn">## Installation</span></span>
+<span id="cb14-20"><a href="#cb14-20"></a></span>
+<span id="cb14-21"><a href="#cb14-21"></a><span class="bn">You can install the released version of praiseme from </span></span>
+<span id="cb14-22"><a href="#cb14-22"></a><span class="bn">[github](https://github.com/SaskiaFreytag/praiseme) with:</span></span>
+<span id="cb14-23"><a href="#cb14-23"></a></span>
+<span id="cb14-24"><a href="#cb14-24"></a><span class="bn">```</span> </span>
+<span id="cb14-25"><a href="#cb14-25"></a>devtools::install_github("SaskiaFreytag/praiseme")</span>
+<span id="cb14-26"><a href="#cb14-26"></a><span class="bn">```</span></span>
+<span id="cb14-27"><a href="#cb14-27"></a></span>
+<span id="cb14-28"><a href="#cb14-28"></a><span class="bn">## Example</span></span>
+<span id="cb14-29"><a href="#cb14-29"></a></span>
+<span id="cb14-30"><a href="#cb14-30"></a><span class="bn">This is a basic example which shows you how to praise a nice person:</span></span>
+<span id="cb14-31"><a href="#cb14-31"></a></span>
+<span id="cb14-32"><a href="#cb14-32"></a><span class="bn">```</span></span>
+<span id="cb14-33"><a href="#cb14-33"></a>library(praiseme)</span>
+<span id="cb14-34"><a href="#cb14-34"></a>praise("Saskia")</span>
+<span id="cb14-35"><a href="#cb14-35"></a><span class="bn">```</span></span></code></pre></div>
+</div>
+<div id="変更をコミットする-1" class="section level4">
+<h4 class="hasAnchor">
+<a href="#%E5%A4%89%E6%9B%B4%E3%82%92%E3%82%B3%E3%83%9F%E3%83%83%E3%83%88%E3%81%99%E3%82%8B-1" class="anchor"></a>変更をコミットする</h4>
+<p>いつものように変更をコミットします。</p>
+</div>
+<div id="変更をプッシュする" class="section level4">
+<h4 class="hasAnchor">
+<a href="#%E5%A4%89%E6%9B%B4%E3%82%92%E3%83%97%E3%83%83%E3%82%B7%E3%83%A5%E3%81%99%E3%82%8B" class="anchor"></a>変更をプッシュする</h4>
+<p>今度こそ、プロジェクト全体とGitHubに加えた変更の履歴をプッシュします。 ここで、パッケージを他の人がダウンロードできるようになります。 これを行うには、RStudio右上隅にある‘Git’ペインに移動します。 そこで‘push’ボタンをクリックします。 その後、GitHubにアクセスして、あなたのpraisemeリポジトリを見つけます。 次のようなものが見えるはずです:</p>
+<p><img src="figures/gh_final.png" width="300"></p>
+<p>他の人が <code><a href="https://devtools.r-lib.org//reference/remote-reexports.html">devtools::install_github("your_name/praiseme")</a></code> を使用して、 パッケージを簡単にインストールできるようになったことに注意してください。 これを試してみたい場合は、install_github関数を実行して GitHubからパッケージをインストールしてください。</p>
 </div>
 </div>
 </div>
