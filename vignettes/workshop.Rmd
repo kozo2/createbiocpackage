@@ -912,3 +912,138 @@ praise("Saskia")
 パッケージを簡単にインストールできるようになったことに注意してください。
 これを試してみたい場合は、install_github関数を実行して
 GitHubからパッケージをインストールしてください。
+
+## Bioconductorへの提出プロセス
+
+### あなたの提出
+
+Bioconductorの送信プロセスはGitHubを介して行います。
+私たちはバージョン管理を使用してパッケージを開発しているので、
+すでに最初のハードルを超えています。
+パッケージが
+[基本的な要件とテスト](https://bioconductor.org/developers/package-submission/)
+に合格すると、提出する準備が整います。
+提出は実際にはかなり簡単です。
+`README.md`ファイルのガイドラインに従って、
+[https://github.com/Bioconductor/Contributions](https://github.com/Bioconductor/Contributions)
+で新しいissueを開いて送信します。
+
+### 提出後
+
+先のissueで新しいパッケージには、最初は‘1. awaiting moderation’
+というラベルが付けられます。
+Bioconductorチームのメンバーは、
+パッケージがBioconductorに向いていることを確認するために、
+パッケージを非常に簡単に調べます。
+適切なパッケージには‘2. review in progress’というラベルが付け直されます。
+
+パッケージはBioconductorのビルドシステムに提出されます。
+システムはGitHubからパッケージをチェックアウトします。
+次に、`R CMD build`を実行して、ソースコード、ビネット、およびマニュアルページ
+の‘tarball’を作成します。
+そしてtarballで`R CMD check`を実行し、
+パッケージが標準のRプログラミングのベストプラクティスに準拠していることを
+確認します。
+Bioconductorは、カスタムの
+[R CMD check environment](https://github.com/Bioconductor/Contributions#r-cmd-check-environment)
+を利用することを選んでいます。
+最後に、ビルドシステムは `R CMD BiocCheck` を実行して、
+パッケージが
+[Bioconductor BiocCheck standards](https://bioconductor.org/packages/devel/bioc/html/BiocCheck.html)
+に準拠していることを確認します。
+システムは、3つのプラットフォーム(Linux、Mac OS X、およびWindows)で、
+[Bioconductorの‘devel’バージョン](https://bioconductor.org/developers/how-to/useDevel/)
+を使用してこれらの手順を実行します。
+これらの手順が完了すると、
+ビルドレポートへのリンクが新しいパッケージのissueにコメントで追加されます。
+パッケージを送信する前に、
+自分のコンピューターでBioconductorの‘devel’バージョンを使って
+これらのチェックを実行することにより、サプライズを避けてください。
+
+ビルドレポートに問題が示されている場合は、パッケージを変更し、
+GitHubリポジトリのデフォルトブランチに変更をコミットします。
+理解できない問題がある場合は、
+[bioc-devel mailing list](https://stat.ethz.ch/mailman/listinfo/bioc-devel)
+で助けを求めてください。
+
+新しいビルドをトリガーするには、コミットにバージョンバンプを含めます
+(DESCRIPTION ファイル中のVersion: の後ろを、例えば 0.99.0 から 0.99.1 にする)。
+
+パッケージがビルドされ、チェック結果がエラーや(回避可能な)警告無しとなると、
+Bioconductorのチームメンバーがパッケージの技術レビューを提供します。
+他のBioconductor開発者およびドメインの専門知識を持つユーザーは、
+追加のコミュニティ解説をここに提供することをお勧めします。
+レビュー担当者は、あなたが作成したissueにコメントを追加します。
+
+あなたはレビューア達が提起した問題に対応します。
+あなたは一次レビューアに返信する必要があります。
+またコミュニティの解説を検討することを強くお勧めします。
+通常、応答にはコードの変更が含まれます。
+これらをGitHubリポジトリのデフォルトのブランチにコミットして、
+後続のビルドをトリガーします。
+すべての懸念事項に対応したら、issueにコメントを追加してその内容を説明します。
+
+レビューアはあなたの回答を評価し、おそらくさらなる修正や説明を提案します。
+その後、レビュー担当者は、Bioconductorに含めるためにパッケージを受け入れるか、
+拒否します。
+ラベル‘2. review in progress’は‘3a. accepted’か‘3b. declined’に
+置き換えられます。
+
+パッケージが承認されると、そのパッケージは
+BioconductorのGitソース管理リポジトリとnightly‘devel’ビルドに追加されます。
+
+### リリースサイクル
+
+毎年2回のリリースがあります(4月と10月頃)。
+リリーススケジュールには、各リリースのタイムテーブルと期限が示されます。
+1リリースサイクルでは通常、‘devel’と‘release’の2つのバージョンのパッケージ
+が生成されます。
+これらのブランチの概念に精通していることが重要です。
+パッケージが承認されると、最初は‘devel’ブランチになります。
+現在の‘devel’ブランチが次の‘release’になります。
+ほとんどのユーザーは‘release’ブランチを使用することが期待されているため、
+次のリリースまですぐにパッケージにアクセスすることはできません。
+バグ修正は両方のブランチで修正できますが、
+新機能は‘devel’ブランチにのみ追加する必要があります。
+リリースサイクルは[ここ](https://bioconductor.org/developers/release-schedule/)
+で確認できます。
+
+### 私たちが知っておくと良いことは何でしょうか？
+
+#### 依存関係に注意してください
+
+あなたのパッケージが使用するその他のパッケージは、
+[CRAN](https://cran.r-project.org/web/packages/available_packages_by_name.html)
+または
+[Bioconductor](https://bioconductor.org/packages/release/BiocViews.html)
+のいずれかで利用できる必要があります。
+既存かつ十分にテストされた他のパッケージ、特にBioconductorパッケージの機能
+を利用することは重要です。
+ただし、パッケージに依存関係を含めるたびに、
+パッケージのメンテナンスが増えることに注意してください。
+依存関係の変更は、パッケージに大混乱をもたらす可能性があり、
+面倒な変更を行う必要があります。
+
+#### パッケージサイズに注意してください
+
+GitHubはすべてのファイルを追跡し、ファイルが削除された場合でも記録を保持します。
+つまり、パッケージにファイルを含めると、圧縮された方法ではありますが、
+ファイルは常にパッケージサイズに影響します。
+Bioconductorソフトウェアパッケージは5MBまでに制限されているため、
+パッケージ開発の初期段階でも大きなファイルを追加して追跡することは避けたいです。
+開発の初期段階でそのようなファイルを絶対に含める必要がある場合は、
+`.gitignore`ファイルにそれを含めることを忘れないでください。
+
+#### S4クラスを恐れないでください
+
+「Bioconductorは、よく知られている、
+より広く使用されているS3クラスよりも複雑なS4クラスのシステムを好む」
+、と聞いたことがあるかもしれません。
+実際には、S4クラスに対するこの設定は、
+新しい表現の実装に取り掛かっている場合にのみ影響します。
+S4クラスを使用する場合は、いくつかの優れたガイドがあります。
+この
+[リンク](http://adv-r.had.co.nz/S4.html)
+とこの
+[リンク](https://kasperdanielhansen.github.io/genbioconductor/html/R_S4.html)
+をチェックしてください。
